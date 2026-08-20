@@ -2,7 +2,7 @@
 print("Hello world\n" * 4)
 
 #2 Some Math
-print((99 ** 3) * 8)
+print(99 ** 3)
 
 #3 What is the output? Make a guess in the comments, then run the code.
 print(5 < 3)  # False
