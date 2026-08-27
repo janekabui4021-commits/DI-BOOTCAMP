@@ -1,0 +1,137 @@
+from datetime import datetime
+import holidays
+
+def upcoming_holiday(country_code="US"):
+    today = datetime.now()
+    print(f"Today's date: {today.strftime('%Y-%m-%d %H:%M:%S')}")
+
+    # Fetch holidays for the current and next year
+    year_holidays = holidays.country_holidays(country_code, years=[today.year, today.year + 1])
+    
+    # Find the next upcoming holiday
+    upcoming = []
+    for date, name in sorted(year_holidays.items()):
+        holiday_dt = datetime.combine(date, datetime.min.time())
+        if holiday_dt > today:
+            upcoming.append((holiday_dt, name))
+            break
+            
+    if upcoming:
+        next_date, name = upcoming[0]
+        time_left = next_date - today
+        days = time_left.days
+        hours, remainder = divmod(time_left.seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        print(f"The next holiday is {name} in {days} days, {hours} hours, and {minutes} minutes.")
+
+upcoming_holiday()
+#2 How Old Are You On Jupiter?
+
+def calculate_age_on_planets(seconds):
+    earth_years = seconds / 31557600
+    
+    orbital_periods = {
+        "Earth": 1.0,
+        "Mercury": 0.2408467,
+        "Venus": 0.61519726,
+        "Mars": 1.8808158,
+        "Jupiter": 11.862615,
+        "Saturn": 29.447498,
+        "Uranus": 84.016846,
+        "Neptune": 164.79132
+    }
+    
+    print(f"Age for {seconds:,} seconds:")
+    for planet, period in orbital_periods.items():
+        age = earth_years / period
+        print(f"  - {planet}: {age:.2f} {planet}-years old")
+
+calculate_age_on_planets(1000000000)
+
+#3
+import re
+
+def return_numbers(text):
+    digits = re.findall(r'\d', text)
+    return ''.join(digits)
+
+print(return_numbers('k5k3q2g5z6x9bn'))  # Output: 532569
+
+#4 Regular Expression #2
+import re
+
+def validate_name():
+    pattern = r'^[A-Z][a-z]* [A-Z][a-z]*$'
+    
+    name = input("Please enter your full name: ")
+    if re.match(pattern, name):
+        print("Valid name!")
+    else:
+        print("Invalid name. Must contain exactly two capitalized words (only letters) separated by a single space.")
+
+validate_name()
+
+#5 Python Password Generator
+import random
+import string
+import re
+
+def generate_password(length):
+    digits = string.digits
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    special = "!@#$%^&*"
+    all_chars = digits + lower + upper + special
+    
+    # Ensure at least 1 of each required character type
+    pwd = [
+        random.choice(digits),
+        random.choice(lower),
+        random.choice(upper),
+        random.choice(special)
+    ]
+    
+    # Fill remaining length with random choices
+    pwd += random.choices(all_chars, k=length - 4)
+    random.shuffle(pwd)
+    return "".join(pwd)
+
+def test_password(password, expected_length):
+    if len(password) != expected_length:
+        return False
+    if not re.search(r'[0-9]', password):
+        return False
+    if not re.search(r'[a-z]', password):
+        return False
+    if not re.search(r'[A-Z]', password):
+        return False
+    if not re.search(r'[!@#$%^&*]', password):
+        return False
+    return True
+
+# 100-run automated test suite
+def run_tests():
+    for _ in range(100):
+        length = random.randint(6, 30)
+        pwd = generate_password(length)
+        assert test_password(pwd, length), f"Password validation failed for: {pwd}"
+    print("All 100 password generation tests passed successfully!")
+
+run_tests()
+
+# Interactive prompt flow
+def main():
+    while True:
+        try:
+            length = int(input("Enter password length (between 6 and 30): "))
+            if 6 <= length <= 30:
+                break
+            print("Invalid range. Must be between 6 and 30.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+    password = generate_password(length)
+    print(f"\nGenerated Password: {password}")
+    print("Security Reminder: Please make sure to keep your password in a safe place!")
+
+main()

@@ -1,10 +1,11 @@
 import sys
 import types
+import importlib
 from email.message import Message
 
 
 try:
-    import cgi
+    importlib.import_module("cgi")
 except ModuleNotFoundError:
     cgi_compat = types.ModuleType("cgi")
 
