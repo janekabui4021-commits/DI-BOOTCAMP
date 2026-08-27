@@ -1,137 +1,131 @@
 from datetime import datetime
 import holidays
+import random
+import re
+import secrets
+import string
 
+
+# Exercise 1
 def upcoming_holiday(country_code="US"):
-    today = datetime.now()
-    print(f"Today's date: {today.strftime('%Y-%m-%d %H:%M:%S')}")
+    today = datetime.now().date()
+    calendar = holidays.country_holidays(
+        country_code,
+        years=[today.year, today.year + 1]
+    )
 
-    # Fetch holidays for the current and next year
-    year_holidays = holidays.country_holidays(country_code, years=[today.year, today.year + 1])
-    
-    # Find the next upcoming holiday
-    upcoming = []
-    for date, name in sorted(year_holidays.items()):
-        holiday_dt = datetime.combine(date, datetime.min.time())
-        if holiday_dt > today:
-            upcoming.append((holiday_dt, name))
-            break
-            
-    if upcoming:
-        next_date, name = upcoming[0]
-        time_left = next_date - today
-        days = time_left.days
-        hours, remainder = divmod(time_left.seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-        print(f"The next holiday is {name} in {days} days, {hours} hours, and {minutes} minutes.")
+    future_holidays = [
+        (holiday_date, name)
+        for holiday_date, name in calendar.items()
+        if holiday_date > today
+    ]
 
-upcoming_holiday()
-#2 How Old Are You On Jupiter?
+    next_date, name = min(future_holidays, key=lambda item: item[0])
+    days_left = (next_date - today).days
 
+    print(f"Today's date: {today}")
+    print(f"The next holiday is {name} in {days_left} days.")
+
+
+# Exercise 2
 def calculate_age_on_planets(seconds):
-    earth_years = seconds / 31557600
-    
+    earth_age = seconds / 31_557_600
+
     orbital_periods = {
-        "Earth": 1.0,
+        "Earth": 1,
         "Mercury": 0.2408467,
         "Venus": 0.61519726,
         "Mars": 1.8808158,
         "Jupiter": 11.862615,
         "Saturn": 29.447498,
         "Uranus": 84.016846,
-        "Neptune": 164.79132
+        "Neptune": 164.79132,
     }
-    
-    print(f"Age for {seconds:,} seconds:")
+
     for planet, period in orbital_periods.items():
-        age = earth_years / period
-        print(f"  - {planet}: {age:.2f} {planet}-years old")
+        print(f"{planet}: {earth_age / period:.2f} years")
 
-calculate_age_on_planets(1000000000)
 
-#3
-import re
-
+# Exercise 3
 def return_numbers(text):
-    digits = re.findall(r'\d', text)
-    return ''.join(digits)
+    return "".join(re.findall(r"\d", text))
 
-print(return_numbers('k5k3q2g5z6x9bn'))  # Output: 532569
 
-#4 Regular Expression #2
-import re
+# Exercise 4
+def validate_name(name):
+    return bool(re.fullmatch(r"[A-Z][a-z]+ [A-Z][a-z]+", name))
 
-def validate_name():
-    pattern = r'^[A-Z][a-z]* [A-Z][a-z]*$'
-    
-    name = input("Please enter your full name: ")
-    if re.match(pattern, name):
-        print("Valid name!")
-    else:
-        print("Invalid name. Must contain exactly two capitalized words (only letters) separated by a single space.")
 
-validate_name()
-
-#5 Python Password Generator
-import random
-import string
-import re
-
+# Exercise 5
 def generate_password(length):
+    if not 6 <= length <= 30:
+        raise ValueError("Length must be between 6 and 30.")
+
     digits = string.digits
-    lower = string.ascii_lowercase
-    upper = string.ascii_uppercase
-    special = "!@#$%^&*"
-    all_chars = digits + lower + upper + special
-    
-    # Ensure at least 1 of each required character type
-    pwd = [
-        random.choice(digits),
-        random.choice(lower),
-        random.choice(upper),
-        random.choice(special)
+    lowercase = string.ascii_lowercase
+    uppercase = string.ascii_uppercase
+    special = "!@#$%^_&*"
+    all_characters = digits + lowercase + uppercase + special
+
+    characters = [
+        secrets.choice(digits),
+        secrets.choice(lowercase),
+        secrets.choice(uppercase),
+        secrets.choice(special),
     ]
-    
-    # Fill remaining length with random choices
-    pwd += random.choices(all_chars, k=length - 4)
-    random.shuffle(pwd)
-    return "".join(pwd)
+
+    characters += [
+        secrets.choice(all_characters)
+        for _ in range(length - 4)
+    ]
+
+    secrets.SystemRandom().shuffle(characters)
+    return "".join(characters)
+
 
 def test_password(password, expected_length):
-    if len(password) != expected_length:
-        return False
-    if not re.search(r'[0-9]', password):
-        return False
-    if not re.search(r'[a-z]', password):
-        return False
-    if not re.search(r'[A-Z]', password):
-        return False
-    if not re.search(r'[!@#$%^&*]', password):
-        return False
-    return True
+    assert len(password) == expected_length
+    assert re.search(r"\d", password)
+    assert re.search(r"[a-z]", password)
+    assert re.search(r"[A-Z]", password)
+    assert re.search(r"[!@#$%^_&*]", password)
 
-# 100-run automated test suite
+
 def run_tests():
     for _ in range(100):
         length = random.randint(6, 30)
-        pwd = generate_password(length)
-        assert test_password(pwd, length), f"Password validation failed for: {pwd}"
-    print("All 100 password generation tests passed successfully!")
+        password = generate_password(length)
+        test_password(password, length)
 
-run_tests()
+    print("All 100 password tests passed!")
 
-# Interactive prompt flow
-def main():
+
+if __name__ == "__main__":
+    upcoming_holiday()
+
+    print("\nPlanetary ages:")
+    calculate_age_on_planets(1_000_000_000)
+
+    print("\nExtracted numbers:")
+    print(return_numbers("k5k3q2g5z6x9bn"))
+
+    name = input("\nEnter your full name: ")
+    print("Valid name!" if validate_name(name) else "Invalid name.")
+
+    run_tests()
+
     while True:
         try:
-            length = int(input("Enter password length (between 6 and 30): "))
+            length = int(input("\nEnter password length (6-30): "))
+
             if 6 <= length <= 30:
                 break
-            print("Invalid range. Must be between 6 and 30.")
+
+            print("Enter a number between 6 and 30.")
+
         except ValueError:
-            print("Invalid input. Please enter a valid number.")
+            print("Enter a valid number.")
 
     password = generate_password(length)
-    print(f"\nGenerated Password: {password}")
-    print("Security Reminder: Please make sure to keep your password in a safe place!")
-
-main()
+    print(f"\nGenerated password: {password}")
+    print("Keep your password in a safe place!")
