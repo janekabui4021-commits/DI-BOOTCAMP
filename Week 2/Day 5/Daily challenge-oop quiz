@@ -55,7 +55,7 @@ class Deck:
         self.reset_deck()
 
     def reset_deck(self):
-        """Populates the deck with all 52 standard playing cards."""
+    
         suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
         values = [
             "A",
