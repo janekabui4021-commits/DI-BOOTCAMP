@@ -1,41 +1,38 @@
 # 1. OOP quiz answers
 
 # 1. What is a class?
-# A class is a user-defined data type which includes local methods and properties.
+ A class is a user-defined data type which includes local methods and properties.
 
 # What is an instance?
-# An instance is an individual object created from a specific class. While the
-# class defines the general structure, the instance contains real data assigned
-# to those defined attributes.
-#
+ An instance is an individual object created from a specific class. 
+
 # What is encapsulation?
-# Encapsulation is the practice of bundling data (attributes) and the methods
-# that operate on that data into a single unit (a class) while restricting
-# direct access to internal details, such as with private or protected access
-# specifiers.
-#
+ Encapsulation is the practice of bundling data (attributes) and the methods
+ that operate on that data into a single unit (a class) while restricting
+ direct access to internal details, such as with private or protected access
+ specifiers.
+
 # What is abstraction?
-# Abstraction is the concept of hiding complex internal implementation details
-# and exposing only the necessary interface to the user, making system
-# interactions simpler and clearer.
-#
+ Abstraction is the concept of hiding complex internal implementation details
+ and exposing only the necessary interface to the user, making system
+ interactions simpler and clearer.
+
 # What is inheritance?
-# Inheritance is the process by which one class takes on the attributes and
-# methods of another.
-#
+ Inheritance is the process by which one class takes on the attributes and
+ methods of another.
+
 # What is multiple inheritance?
-# Multiple inheritance occurs when a child class inherits attributes and methods
-# directly from more than one parent class, such as
-# class Child(ParentA, ParentB).
-#
+ Multiple inheritance occurs when a child class inherits attributes and methods
+ directly from more than one parent class, such as class Child(ParentA, ParentB).
+
 # What is polymorphism?
-# Polymorphism allows different or related classes to use the same method names.
-#
+ Polymorphism allows different or related classes to use the same method names.
+
 # What is method resolution order (MRO)?
-# Method Resolution Order (MRO) is the sequence in which Python searches for
-# attributes or methods across a class hierarchy, especially in cases of
-# multiple inheritance. Python uses the C3 Linearization algorithm to determine
-# this order, which can be inspected using ClassName.__mro__ or ClassName.mro().
+ Method Resolution Order (MRO) is the sequence in which Python searches for
+ attributes or methods across a class hierarchy, especially in cases of
+ multiple inheritance. Python uses the C3 Linearization algorithm to determine
+ this order, which can be inspected using ClassName.__mro__ or ClassName.mro().
 
 # 2.
 import random
