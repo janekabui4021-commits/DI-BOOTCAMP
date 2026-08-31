@@ -1,0 +1,40 @@
+Name: jane
+Age: 30
+STR: 12 | DEX: 16 | CON: 13
+INT: 9 | WIS: 13 | CHA: 14
+
+Name: lucy
+Age: 21
+STR: 7 | DEX: 11 | CON: 4
+INT: 14 | WIS: 5 | CHA: 13
+
+Name: samuel
+Age: 24
+STR: 9 | DEX: 11 | CON: 9
+INT: 11 | WIS: 10 | CHA: 13
+
+Name: chacha
+Age: 35
+STR: 16 | DEX: 14 | CON: 11
+INT: 7 | WIS: 15 | CHA: 12
+
+Name: eric
+Age: 25
+STR: 9 | DEX: 12 | CON: 10
+INT: 12 | WIS: 10 | CHA: 11
+
+Name: gael
+Age: 20
+STR: 10 | DEX: 12 | CON: 13
+INT: 14 | WIS: 12 | CHA: 16
+
+Name: john
+Age: 18
+STR: 12 | DEX: 15 | CON: 15
+INT: 15 | WIS: 13 | CHA: 10
+
+Name: liz
+Age: 20
+STR: 9 | DEX: 15 | CON: 11
+INT: 8 | WIS: 11 | CHA: 9
+

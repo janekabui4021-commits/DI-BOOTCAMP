@@ -1,0 +1,106 @@
+# 1. OOP quiz answers
+
+# 1. What is a class?
+# A class is a user-defined data type which includes local methods and properties.
+
+# What is an instance?
+# An instance is an individual object created from a specific class. While the
+# class defines the general structure, the instance contains real data assigned
+# to those defined attributes.
+#
+# What is encapsulation?
+# Encapsulation is the practice of bundling data (attributes) and the methods
+# that operate on that data into a single unit (a class) while restricting
+# direct access to internal details, such as with private or protected access
+# specifiers.
+#
+# What is abstraction?
+# Abstraction is the concept of hiding complex internal implementation details
+# and exposing only the necessary interface to the user, making system
+# interactions simpler and clearer.
+#
+# What is inheritance?
+# Inheritance is the process by which one class takes on the attributes and
+# methods of another.
+#
+# What is multiple inheritance?
+# Multiple inheritance occurs when a child class inherits attributes and methods
+# directly from more than one parent class, such as
+# class Child(ParentA, ParentB).
+#
+# What is polymorphism?
+# Polymorphism allows different or related classes to use the same method names.
+#
+# What is method resolution order (MRO)?
+# Method Resolution Order (MRO) is the sequence in which Python searches for
+# attributes or methods across a class hierarchy, especially in cases of
+# multiple inheritance. Python uses the C3 Linearization algorithm to determine
+# this order, which can be inspected using ClassName.__mro__ or ClassName.mro().
+
+# 2.
+import random
+
+
+class Card:
+
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+
+    def __repr__(self):
+        return f"{self.value} of {self.suit}"
+
+
+class Deck:
+
+    def __init__(self):
+        self.cards = []
+        self.reset_deck()
+
+    def reset_deck(self):
+        """Populates the deck with all 52 standard playing cards."""
+        suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
+        values = [
+            "A",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "J",
+            "Q",
+            "K",
+        ]
+        self.cards = [Card(suit, value) for suit in suits for value in values]
+
+    def shuffle(self):
+        """Ensures the deck has all 52 cards and rearranges them randomly."""
+        if len(self.cards) != 52:
+            self.reset_deck()
+        random.shuffle(self.cards)
+
+    def deal(self):
+        """Deals a single card from the deck and removes it."""
+        if len(self.cards) == 0:
+            print("No cards left in the deck!")
+            return None
+        return self.cards.pop()
+
+
+# --- Usage Example ---
+if __name__ == "__main__":
+    deck = Deck()
+    print(f"Initial deck size: {len(deck.cards)}")
+
+    # Shuffle the deck
+    deck.shuffle()
+    print("Deck shuffled successfully.")
+
+    # Deal a single card
+    dealt_card = deck.deal()
+    print(f"Dealt card: {dealt_card}")
+    print(f"Remaining cards in deck: {len(deck.cards)}")

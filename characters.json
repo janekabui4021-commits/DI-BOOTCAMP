@@ -1,0 +1,98 @@
+[
+  {
+    "name": "jane",
+    "age": 30,
+    "abilities": {
+      "strength": 12,
+      "dexterity": 16,
+      "constitution": 13,
+      "intelligence": 9,
+      "wisdom": 13,
+      "charisma": 14
+    }
+  },
+  {
+    "name": "lucy",
+    "age": 21,
+    "abilities": {
+      "strength": 7,
+      "dexterity": 11,
+      "constitution": 4,
+      "intelligence": 14,
+      "wisdom": 5,
+      "charisma": 13
+    }
+  },
+  {
+    "name": "samuel",
+    "age": 24,
+    "abilities": {
+      "strength": 9,
+      "dexterity": 11,
+      "constitution": 9,
+      "intelligence": 11,
+      "wisdom": 10,
+      "charisma": 13
+    }
+  },
+  {
+    "name": "chacha",
+    "age": 35,
+    "abilities": {
+      "strength": 16,
+      "dexterity": 14,
+      "constitution": 11,
+      "intelligence": 7,
+      "wisdom": 15,
+      "charisma": 12
+    }
+  },
+  {
+    "name": "eric",
+    "age": 25,
+    "abilities": {
+      "strength": 9,
+      "dexterity": 12,
+      "constitution": 10,
+      "intelligence": 12,
+      "wisdom": 10,
+      "charisma": 11
+    }
+  },
+  {
+    "name": "gael",
+    "age": 20,
+    "abilities": {
+      "strength": 10,
+      "dexterity": 12,
+      "constitution": 13,
+      "intelligence": 14,
+      "wisdom": 12,
+      "charisma": 16
+    }
+  },
+  {
+    "name": "john",
+    "age": 18,
+    "abilities": {
+      "strength": 12,
+      "dexterity": 15,
+      "constitution": 15,
+      "intelligence": 15,
+      "wisdom": 13,
+      "charisma": 10
+    }
+  },
+  {
+    "name": "liz",
+    "age": 20,
+    "abilities": {
+      "strength": 9,
+      "dexterity": 15,
+      "constitution": 11,
+      "intelligence": 8,
+      "wisdom": 11,
+      "charisma": 9
+    }
+  }
+]
