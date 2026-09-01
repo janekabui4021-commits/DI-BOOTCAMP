@@ -36,4 +36,4 @@ function printWordsInFrame() {
   console.log(border);
 }
 
-printWordsInFrame();
+ printWordsInFrame();

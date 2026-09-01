@@ -42,13 +42,15 @@ console.log(isOmnipresent([[1, 1], [1, 3], [5, 1], [6, 1]], 1)); // true
 console.log(isOmnipresent([[1, 1], [1, 3], [5, 1], [6, 1]], 6)); // false
 
 // Exercise 5: Red table
-const table = document.body.firstElementChild;
+if (typeof document !== 'undefined') {
+  const table = document.body.firstElementChild;
 
-if (table) {
-  for (let rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
-    const cell = table.rows[rowIndex].cells[rowIndex];
-    if (cell) {
-      cell.style.backgroundColor = 'red';
+  if (table) {
+    for (let rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      const cell = table.rows[rowIndex].cells[rowIndex];
+      if (cell) {
+        cell.style.backgroundColor = 'red';
+      }
     }
   }
 }

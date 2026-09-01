@@ -61,6 +61,10 @@ console.log(uniqueElements([1, 2, 3, 3, 3, 3, 4, 5])); // [1, 2, 3, 4, 5]
 
 // Exercise 6: Calendar
 function createCalendar(year, month) {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
   const table = document.createElement('table');
   const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -104,4 +108,6 @@ function createCalendar(year, month) {
   document.body.appendChild(table);
 }
 
-createCalendar(2012, 9);
+if (typeof document !== 'undefined') {
+  createCalendar(2012, 9);
+}
