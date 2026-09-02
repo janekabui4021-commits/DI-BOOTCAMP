@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM and Forms Exercises</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+        line-height: 1.6;
+      }
+
+      section {
+        margin-bottom: 40px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 700px;
+      }
+
+      article {
+        padding: 10px;
+      }
+
+      .fade-out {
+        animation: fadeOut 0.8s forwards;
+      }
+
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>Exercise 1: Change the article</h2>
+      <article>
+        <h1>Some Facts</h1>
+        <h2>The Chocolate</h2>
+        <h3>History of the chocolate</h3>
+        <p>Chocolate is made from tropical Theobroma cacao tree seeds. Its earliest use dates back to the Olmec civilization in Mesoamerica.</p>
+        <p>After the European discovery of the Americas, chocolate became very popular in the wider world, and its demand exploded.</p>
+        <p>Chocolate has since become a popular food product that millions enjoy every day, thanks to its unique, rich, and sweet taste.</p>
+        <p>But what effect does eating chocolate have on our health?</p>
+      </article>
+      <button id="bold-button" type="button">Make paragraphs bold</button>
+    </section>
+
+    <section>
+      <h2>Exercise 2: Work with forms</h2>
+      <form id="userForm">
+        <label for="fname">First name:</label><br />
+        <input type="text" id="fname" name="firstname" /><br />
+        <label for="lname">Last name:</label><br />
+        <input type="text" id="lname" name="lastname" /><br /><br />
+        <input type="submit" value="Submit" id="submit" />
+      </form>
+      <ul class="usersAnswer"></ul>
+    </section>
+
+    <section>
+      <h2>Exercise 3: Transform the sentence</h2>
+      <p id="sentence">
+        <strong>Hello</strong> I hope you are enjoying <strong>this</strong> class. At the
+        <strong>end</strong> you <strong>will</strong> be great Developers!
+        <strong>Enjoy</strong> the <strong>JavaScript </strong> lessons
+      </p>
+    </section>
+
+    <section>
+      <h2>Exercise 4: Volume of a sphere</h2>
+      <p>Input radius value and get the volume of a sphere.</p>
+      <form id="MyForm">
+        <label for="radius">Radius</label>
+        <input type="text" name="radius" id="radius" required />
+        <label for="volume">Volume</label>
+        <input type="text" name="volume" id="volume" />
+        <input type="submit" value="Calculate" id="submitSphere" />
+      </form>
+    </section>
+
+    <script src="Exercise XP.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM Exercises</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.6;
+    }
+
+    section {
+      margin-bottom: 40px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      max-width: 700px;
+    }
+
+    input, button {
+      margin: 8px 0;
+      padding: 8px 10px;
+    }
+
+    #totalTip {
+      display: none;
+      margin-top: 12px;
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2>Exercise 1: Calculate the tip</h2>
+    <div>
+      <label for="billAmt">Bill Amount:</label>
+      <input id="billAmt" type="text" />
+    </div>
+    <div>
+      <label for="serviceQual">Service Quality:</label>
+      <input id="serviceQual" type="number" min="0" step="0.1" />
+    </div>
+    <div>
+      <label for="numOfPeople">Number of People:</label>
+      <input id="numOfPeople" type="number" min="1" />
+    </div>
+    <button id="calculate" type="button">Calculate</button>
+
+    <div id="totalTip">
+      <span id="each">Each person</span> pays: <span id="tip">0.00</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Exercise 2: Validate the email</h2>
+    <form id="emailForm">
+      <label for="emailInput">Email:</label>
+      <input id="emailInput" type="email" />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="emailMessage"></p>
+  </section>
+
+  <section>
+    <h2>Exercise 3: Get the user’s geolocation</h2>
+    <button id="getLocation" type="button">Get My Location</button>
+    <pre id="locationOutput"></pre>
+  </section>
+
+  <script src="Main.js"></script>
+</body>
+</html>
