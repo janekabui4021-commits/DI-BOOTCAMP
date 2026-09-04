@@ -4,4 +4,4 @@ const mergeWords = word => nextWord =>
 
 console.log(mergeWords("Hello")());
 console.log(mergeWords("There")("is")("no")("spoon.")());
-//
+ 

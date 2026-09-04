@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="./todo-list.css" />
+  </head>
+  <body>
+    <main class="todo-app">
+      <header class="todo-header">
+        <p class="eyebrow">Today</p>
+        <h1>Todo list</h1>
+        <p>Small steps, clearly lined up.</p>
+      </header>
+
+      <section class="todo-panel" aria-label="Todo list">
+        <form id="taskForm">
+          <label class="visually-hidden" for="taskInput">New task</label>
+          <input id="taskInput" type="text" placeholder="What needs doing?" autocomplete="off" />
+          <button type="submit">Submit</button>
+        </form>
+        <div class="listTasks"></div>
+      </section>
+    </main>
+    <script src="./Daily challenge Todo list.js"></script>
+  </body>
+</html>

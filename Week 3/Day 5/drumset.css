@@ -1,0 +1,124 @@
+:root {
+  --charcoal: #202325;
+  --cream: #ea3983;
+  --orange: #4be4ef;
+  --muted: #a611eb;
+  --line: #e9f539f9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--cream);
+  background: var(--charcoal);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: .28;
+  background-image: linear-gradient(115deg, transparent 0 49%, #ffffff08 49% 50%, transparent 50% 100%);
+  background-size: 10px 10px;
+}
+
+.drum-app {
+  width: min(980px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+
+.drum-header {
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 8vw, 82px);
+  font-weight: normal;
+  letter-spacing: 0;
+  line-height: .9;
+}
+
+h1 span {
+  color: var(--orange);
+}
+
+.drum-header p:last-child {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.drum-machine {
+  border: 1px solid var(--line);
+  padding: 20px;
+  background: #292c2c;
+  box-shadow: 16px 16px 0 #151717;
+}
+
+.drum-topline {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.live-status {
+  color: var(--orange);
+}
+.pads { display: grid; grid-template-columns: repeat(9, 1fr); gap: 10px; padding-top: 20px; }
+
+.drum-pad {
+  display: flex;
+  min-height: 170px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #555957;
+  color: var(--cream);
+  background: #343837;
+  cursor: pointer;
+  transition: border-color .12s ease, background-color .12s ease, transform .12s ease;
+}
+
+.drum-pad:hover,
+.drum-pad:focus-visible,
+.drum-pad.playing {
+  border-color: var(--orange);
+  background: #49342d;
+  outline: none;
+  transform: translateY(-4px);
+}
+
+.pad-key { color: var(--orange); font-family: Georgia, serif; font-size: 38px; }
+.pad-name { color: var(--muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+audio { display: none; }
+
+@media (max-width: 760px) {
+  .drum-app { width: min(100% - 28px, 540px); padding: 40px 0 56px; }
+  .drum-header { margin-bottom: 32px; }
+  .drum-machine { padding: 14px; box-shadow: 8px 8px 0 #151717; }
+  .pads { grid-template-columns: repeat(3, 1fr); }
+  .drum-pad { min-height: 120px; }
+}
