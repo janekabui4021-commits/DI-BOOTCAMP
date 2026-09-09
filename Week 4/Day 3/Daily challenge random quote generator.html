@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <style>
+        body {
+            font-family: "Trebuchet MS", sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #34213f;
+            background: linear-gradient(135deg, #ffd166 0%, #f78fb3 48%, #6ec6ca 100%);
+        }
+        h1, h2 {
+            color: #5b236e;
+            text-shadow: 1px 1px 0 #fff4b8;
+        }
+        section, form {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid #7b2cbf;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 8px 18px rgba(91, 35, 110, 0.18);
+        }
+        .btn-group {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        button {
+            cursor: pointer;
+            padding: 6px 12px;
+            border: 0;
+            border-radius: 20px;
+            color: #ffffff;
+            background: #7b2cbf;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #f72585;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 6px;
+            width: 95%;
+            border: 2px solid #38a3a5;
+            border-radius: 6px;
+            background: #fffdf0;
+        }
+        input:focus {
+            outline: 3px solid #ffd166;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Quote Generator</h1>
+    <section id="quote-section"></section>
+    <button id="generate-btn">Generate Quote</button>
+
+    <div class="btn-group">
+        <button id="btn-char-space">Count Chars (With Spaces)</button>
+        <button id="btn-char-no-space">Count Chars (No Spaces)</button>
+        <button id="btn-words">Count Words</button>
+        <button id="btn-like">Like</button>
+    </div>
+    <p id="stats-output"></p>
+
+    <hr>
+
+    <h2>Add a New Quote</h2>
+    <form id="add-quote-form">
+        <label for="quote-input">Quote:</label><br>
+        <input type="text" id="quote-input" required><br>
+        <label for="author-input">Author:</label><br>
+        <input type="text" id="author-input" required><br>
+        <button type="submit">Add Quote</button>
+    </form>
+
+    <hr>
+
+    <h2>Filter by Author</h2>
+    <form id="filter-form">
+        <label for="author-filter-input">Author Name:</label><br>
+        <input type="text" id="author-filter-input" required><br>
+        <button type="submit">Filter Quotes</button>
+    </form>
+
+    <div id="filter-navigation" style="display: none;">
+        <section id="filtered-quote-section"></section>
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+    </div>
+
+    <script src="Daily challenge random quote generator.js"></script>
+</body>
+</html>

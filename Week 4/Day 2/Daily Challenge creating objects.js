@@ -14,11 +14,11 @@ class Video {
 
 // 3. Instantiate a new Video instance and call watch()
 const video1 = new Video("JavaScript Fundamentals", "Alice", 300);
-video1.watch(); // Output: Alice watched all 300 of JavaScript Fundamentals!
+video1.watch(); 
 
 // 4. Instantiate a second Video instance with different values
 const video2 = new Video("Advanced CSS Animations", "Bob", 600);
-video2.watch(); // Output: Bob watched all 600 of Advanced CSS Animations!
+video2.watch(); 
 
 
 // --- BONUS ---

@@ -1,9 +1,10 @@
 // Exercise 1: Print Full Name
 function printFullName({ first, last }) {
-	return `Your full name is ${first} ${last}`;
+  return `Your full name is ${first}${last}`;
 }
 
 console.log(printFullName({ first: 'Elie', last: 'Schoppik' }));
+
 
 // Exercise 2: Keys and Values
 function keysAndValues(object) {

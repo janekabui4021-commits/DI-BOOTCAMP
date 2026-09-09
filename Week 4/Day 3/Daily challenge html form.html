@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Challenge: HTML Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      min-height: 100vh;
+      background-color: #ff6b81;
+      color: #17324d;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 250px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #17324d;
+      border: 3px solid #17324d;
+      border-radius: 12px;
+      color: #ff6b81;
+    }
+
+    h1 {
+      color: #17324d;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input,
+    button {
+      padding: 8px;
+      font-size: 14px;
+      border: 2px solid #17324d;
+      border-radius: 6px;
+      background-color: #ff6b81;
+      color: #17324d;
+    }
+
+    button {
+      background-color: #ff6b81;
+      color: #17324d;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #17324d;
+      color: #ff6b81;
+    }
+
+    #output {
+      background-color: #17324d;
+      color: #ff6b81;
+      font-family: monospace;
+      padding: 10px;
+      white-space: pre-wrap;
+      border-left: 6px solid #ff6b81;
+      max-width: 290px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Form</h1>
+
+  <form id="user-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="last-name">Last Name:</label>
+    <input type="text" id="last-name" name="lastName" required>
+
+    <button type="submit">Send</button>
+  </form>
+
+  <section id="output"></section>
+
+  <script src="Daily challenge html form.js"></script>
+</body>
+</html>
