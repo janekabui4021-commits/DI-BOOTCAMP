@@ -1,0 +1,230 @@
+:root {
+  --ink: #f4f0e7;
+  --muted: #ff9dcc;
+  --line: rgba(244, 240, 231, 0.16);
+  --yellow: #ff4fa3;
+  --red: #ff75b8;
+  --night: #09070b;
+  --panel: rgba(17, 14, 21, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 82% 15%, rgba(255, 79, 163, 0.18), transparent 28%),
+    radial-gradient(circle at 10% 88%, rgba(255, 117, 184, 0.12), transparent 30%),
+    #09070b;
+  font-family: "Space Mono", monospace;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.18;
+  background-image: radial-gradient(var(--ink) 0.7px, transparent 0.7px);
+  background-size: 24px 24px;
+  content: "";
+  pointer-events: none;
+}
+
+.container {
+  width: min(100%, 660px);
+  animation: rise-in 700ms ease-out both;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--yellow);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.star-wars-title {
+  margin: 0 0 32px;
+  color: var(--ink);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(4.5rem, 18vw, 9rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 0.8;
+  text-shadow: 5px 5px 0 rgba(255, 79, 163, 0.88);
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--yellow);
+  background: var(--panel);
+  box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red);
+}
+
+#content {
+  min-height: 275px;
+  padding: 44px 22px 34px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.instruction {
+  max-width: 340px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.character-result {
+  width: 100%;
+  animation: reveal 450ms ease-out both;
+}
+
+.character-label {
+  color: var(--yellow);
+  font-size: 0.67rem;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.character-result h2 {
+  margin: 12px 0 30px;
+  color: var(--ink);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2.8rem, 10vw, 5.5rem);
+  letter-spacing: 0.03em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 0;
+  text-align: left;
+}
+
+dl div {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+dt {
+  color: var(--muted);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 7px 0 0;
+  color: var(--ink);
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--yellow);
+  font-size: 0.85rem;
+}
+
+.status.error {
+  color: var(--red);
+}
+
+button {
+  width: 100%;
+  padding: 19px 22px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  color: var(--night);
+  background: var(--yellow);
+  cursor: pointer;
+  font: 700 0.78rem "Space Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+button:hover:not(:disabled), button:focus-visible:not(:disabled) {
+  color: var(--ink);
+  background: var(--red);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: -6px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+button i {
+  margin-right: 8px;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #content {
+    min-height: 300px;
+    padding-inline: 18px;
+  }
+}
