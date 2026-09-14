@@ -1,8 +1,8 @@
 :root {
-  --ink: #f4f0e7;
+  --ink: #ffffff;
   --muted: #ff9dcc;
   --line: rgba(244, 240, 231, 0.16);
-  --yellow: #ff4fa3;
+  --pink: #ff4fa3;
   --red: #ff75b8;
   --night: #09070b;
   --panel: rgba(17, 14, 21, 0.92);
@@ -44,7 +44,7 @@ body::before {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--yellow);
+  color: var(--pink);
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -64,7 +64,7 @@ body::before {
 .card {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-top: 3px solid var(--yellow);
+  border-top: 3px solid var(--pink);
   background: var(--panel);
   box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
@@ -118,7 +118,7 @@ body::before {
 }
 
 .character-label {
-  color: var(--yellow);
+  color: var(--pink);
   font-size: 0.67rem;
   letter-spacing: 0.17em;
   text-transform: uppercase;
@@ -165,7 +165,7 @@ dd {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--yellow);
+  color: var(--pink);
   font-size: 0.85rem;
 }
 
@@ -179,7 +179,7 @@ button {
   border: 0;
   border-top: 1px solid var(--line);
   color: var(--night);
-  background: var(--yellow);
+  background: var(--pink);
   cursor: pointer;
   font: 700 0.78rem "Space Mono", monospace;
   letter-spacing: 0.08em;

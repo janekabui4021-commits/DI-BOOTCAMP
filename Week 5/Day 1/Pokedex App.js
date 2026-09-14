@@ -1,5 +1,5 @@
 let currentPokemonId = null;
-const TOTAL_POKEMON = 1025; // Current total count in PokéAPI
+const TOTAL_POKEMON = 1025; 
 
 // DOM Elements
 const randomBtn = document.getElementById("random-btn");
@@ -48,11 +48,14 @@ async function fetchPokemon(identifier) {
 function displayPokemon(data) {
   currentPokemonId = data.id;
 
-  imgEl.src = data.sprites.front_default || "";
+  imgEl.src = data.sprites.other["official-artwork"].front_default
+    || data.sprites.front_default
+    || "";
+  imgEl.alt = `${data.name} artwork`;
   nameEl.textContent = data.name.toUpperCase();
-  idEl.textContent = data.id;
-  heightEl.textContent = data.height;
-  weightEl.textContent = data.weight;
+  idEl.textContent = `#${String(data.id).padStart(4, "0")}`;
+  heightEl.textContent = `${(data.height / 10).toFixed(1)} m`;
+  weightEl.textContent = `${(data.weight / 10).toFixed(1)} kg`;
   typeEl.textContent = data.types.map(t => t.type.name).join(", ");
 
   loadingEl.classList.add("hidden");
@@ -66,14 +69,20 @@ randomBtn.addEventListener("click", async () => {
 });
 
 prevBtn.addEventListener("click", async () => {
-  if (currentPokemonId && currentPokemonId > 1) {
-    await fetchPokemon(currentPokemonId - 1);
+  if (currentPokemonId) {
+    const previousId = currentPokemonId === 1
+      ? TOTAL_POKEMON
+      : currentPokemonId - 1;
+    await fetchPokemon(previousId);
   }
 });
 
 nextBtn.addEventListener("click", async () => {
   if (currentPokemonId) {
-    await fetchPokemon(currentPokemonId + 1);
+    const nextId = currentPokemonId === TOTAL_POKEMON
+      ? 1
+      : currentPokemonId + 1;
+    await fetchPokemon(nextId);
   } else {
     await fetchPokemon(1);
   }

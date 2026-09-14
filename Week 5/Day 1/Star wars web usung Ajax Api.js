@@ -1,60 +1,72 @@
+const TOTAL_CHARACTERS = 83;
 const content = document.querySelector("#content");
 const findButton = document.querySelector("#find-btn");
 
-const randomCharacterUrl = () =>
-	`https://www.swapi.tech/api/people/${Math.floor(Math.random() * 82) + 1}`;
+function getRandomCharacterId() {
+  return Math.floor(Math.random() * TOTAL_CHARACTERS) + 1;
+}
 
-const renderCharacter = (character) => {
-	const { name, height, gender, birth_year: birthYear, homeworld } = character;
+function showStatus(message, iconClass, statusClass = "") {
+  content.innerHTML = `
+    <div class="status ${statusClass}" role="status">
+      <i class="fa-solid ${iconClass}" aria-hidden="true"></i>
+      <span>${message}</span>
+    </div>
+  `;
+}
 
-	content.innerHTML = `
-		<div class="character-result">
-			<span class="character-label">Transmission received</span>
-			<h2>${name}</h2>
-			<dl>
-				<div><dt>Height</dt><dd>${height} cm</dd></div>
-				<div><dt>Gender</dt><dd>${gender}</dd></div>
-				<div><dt>Birth year</dt><dd>${birthYear}</dd></div>
-				<div><dt>Homeworld</dt><dd>${homeworld}</dd></div>
-			</dl>
-		</div>
-	`;
-};
+function renderCharacter(character, homeworld) {
+  content.innerHTML = `
+    <div class="character-result">
+      <span class="character-label">Transmission received</span>
+      <h2>${character.name}</h2>
+      <dl>
+        <div><dt>Height</dt><dd>${character.height} cm</dd></div>
+        <div><dt>Gender</dt><dd>${character.gender}</dd></div>
+        <div><dt>Birth year</dt><dd>${character.birth_year}</dd></div>
+        <div><dt>Homeworld</dt><dd>${homeworld}</dd></div>
+      </dl>
+    </div>
+  `;
+}
 
-const findCharacter = async () => {
-	findButton.disabled = true;
-	findButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Searching...';
-	content.innerHTML = `
-		<div class="status" role="status" aria-live="polite">
-			<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
-			<span>Searching the galaxy...</span>
-		</div>
-	`;
+async function fetchHomeworld(homeworldUrl) {
+  const response = await fetch(homeworldUrl);
+  if (!response.ok) {
+    throw new Error("Homeworld unavailable");
+  }
 
-	try {
-		const response = await fetch(randomCharacterUrl());
+  const data = await response.json();
+  return data.result?.properties?.name || "Unknown";
+}
 
-		if (!response.ok) {
-			throw new Error("The character could not be found.");
-		}
+async function findCharacter() {
+  findButton.disabled = true;
+  findButton.setAttribute("aria-busy", "true");
+  findButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Searching...';
+  showStatus("Searching the galaxy...", "fa-spinner fa-spin");
 
-		const result = await response.json();
-		if (!result.result || !result.result.properties) {
-			throw new Error("The character data is unavailable.");
-		}
+  try {
+    const response = await fetch(`https://www.swapi.tech/api/people/${getRandomCharacterId()}`);
+    if (!response.ok) {
+      throw new Error("Character unavailable");
+    }
 
-		renderCharacter(result.result.properties);
-	} catch (error) {
-		content.innerHTML = `
-			<div class="status error" role="alert">
-				<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-				<span>${error.message} Try again.</span>
-			</div>
-		`;
-	} finally {
-		findButton.disabled = false;
-		findButton.innerHTML = '<i class="fa-solid fa-shuffle" aria-hidden="true"></i> Find Someone';
-	}
-};
+    const data = await response.json();
+    const character = data.result?.properties;
+    if (!character) {
+      throw new Error("Character data unavailable");
+    }
+
+    const homeworld = await fetchHomeworld(character.homeworld);
+    renderCharacter(character, homeworld);
+  } catch (error) {
+    showStatus("Oh no! That character isn't available...", "fa-triangle-exclamation", "error");
+  } finally {
+    findButton.disabled = false;
+    findButton.removeAttribute("aria-busy");
+    findButton.innerHTML = '<i class="fa-solid fa-shuffle" aria-hidden="true"></i> Find Someone';
+  }
+}
 
 findButton.addEventListener("click", findCharacter);

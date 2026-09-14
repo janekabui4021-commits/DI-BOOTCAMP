@@ -20,10 +20,10 @@
         <span class="signal"><span></span> Live connection</span>
         <span class="card-id">SWAPI / 001</span>
       </div>
-      <div id="content">
+      <div id="content" aria-live="polite" aria-atomic="true">
         <p class="instruction" id="card-title">Click the button to find a random character!</p>
       </div>
-      <button id="find-btn" type="button">
+      <button id="find-btn" type="button" aria-controls="content">
         <i class="fa-solid fa-shuffle" aria-hidden="true"></i>
         Find Someone
       </button>
