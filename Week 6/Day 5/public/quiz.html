@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Quiz Game</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Georgia, serif;
+            color: #17202a;
+            background: #e8f0ed;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e8f0ed, #f8d6b3);
+        }
+
+        main {
+            width: min(100% - 32px, 760px);
+            margin: 0 auto;
+            padding: 56px 0;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            font: 700 13px Arial, sans-serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(3rem, 9vw, 6rem);
+            line-height: .9;
+        }
+
+        .quiz {
+            margin-top: 36px;
+            padding: clamp(24px, 6vw, 52px);
+            border: 2px solid #355982;
+            background: #fffdf8;
+            box-shadow: 10px 10px 0 #17202a;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            font: 700 14px Arial, sans-serif;
+        }
+
+        .progress-bar {
+            height: 10px;
+            margin: 12px 0 32px;
+            background: #d5dedb;
+        }
+
+        #progress-fill {
+            width: 0;
+            height: 100%;
+            background: #e56843;
+            transition: width .25s ease;
+        }
+
+        h2 {
+            margin: 0 0 24px;
+            font-size: clamp(1.7rem, 4vw, 2.5rem);
+            line-height: 1.1;
+        }
+
+        #answers {
+            display: grid;
+            gap: 12px;
+        }
+
+        .answer {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #17202a;
+            background: #f4c095;
+            color: #17202a;
+            font: 700 16px Arial, sans-serif;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .answer:hover:not(:disabled) { background: #e56843; color: #fff; }
+        .answer:disabled { cursor: default; opacity: .75; }
+        .answer.correct { background: #75b798; opacity: 1; }
+        .answer.incorrect { background: #e99a88; opacity: 1; }
+
+        #feedback {
+            min-height: 28px;
+            margin: 24px 0 0;
+            font: 700 16px Arial, sans-serif;
+        }
+
+        #next-button,
+        #restart-button {
+            margin-top: 20px;
+            padding: 14px 20px;
+            border: 2px solid #17202a;
+            background: #17202a;
+            color: #fff;
+            font: 700 15px Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        #next-button:hover,
+        #restart-button:hover { background: #e56843; }
+
+        .hidden { display: none; }
+
+        #final-score {
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 560px) {
+            main { padding-top: 32px; }
+            .quiz { margin-top: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="eyebrow">Express + Node.js</p>
+        <h1>Quick Quiz</h1>
+
+        <section class="quiz" aria-live="polite">
+            <div id="quiz-screen">
+                <div class="progress">
+                    <span id="question-count">Question 1</span>
+                    <span>Score: <span id="score">0</span></span>
+                </div>
+                <div class="progress-bar" aria-hidden="true">
+                    <div id="progress-fill"></div>
+                </div>
+
+                <h2 id="question">Loading question...</h2>
+                <div id="answers"></div>
+                <p id="feedback"></p>
+                <button id="next-button" class="hidden" type="button">Next question</button>
+            </div>
+
+            <div id="results-screen" class="hidden">
+                <h2>Quiz complete!</h2>
+                <p id="final-score"></p>
+                <button id="restart-button" type="button">Play again</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const quizScreen = document.querySelector('#quiz-screen');
+        const resultsScreen = document.querySelector('#results-screen');
+        const questionCount = document.querySelector('#question-count');
+        const scoreElement = document.querySelector('#score');
+        const progressFill = document.querySelector('#progress-fill');
+        const questionElement = document.querySelector('#question');
+        const answersElement = document.querySelector('#answers');
+        const feedbackElement = document.querySelector('#feedback');
+        const nextButton = document.querySelector('#next-button');
+        const finalScoreElement = document.querySelector('#final-score');
+        const restartButton = document.querySelector('#restart-button');
+
+        async function loadQuiz() {
+            const response = await fetch('/api/quiz');
+            const data = await response.json();
+            questions = data.questions;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            const questionNumber = currentQuestionIndex + 1;
+
+            questionCount.textContent = 'Question ' + questionNumber + ' of ' + questions.length;
+            scoreElement.textContent = score;
+            progressFill.style.width = (questionNumber / questions.length) * 100 + '%';
+            questionElement.textContent = currentQuestion.question;
+            feedbackElement.textContent = '';
+            nextButton.classList.add('hidden');
+            answersElement.innerHTML = '';
+
+            currentQuestion.answers.forEach((answer) => {
+                const answerButton = document.createElement('button');
+                answerButton.className = 'answer';
+                answerButton.type = 'button';
+                answerButton.textContent = answer;
+                answerButton.addEventListener('click', () => submitAnswer(answer, answerButton));
+                answersElement.appendChild(answerButton);
+            });
+        }
+
+        async function submitAnswer(answer, selectedButton) {
+            const response = await fetch('/api/quiz/answer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ questionIndex: currentQuestionIndex, answer }),
+            });
+            const result = await response.json();
+
+            document.querySelectorAll('.answer').forEach((button) => {
+                button.disabled = true;
+                if (button.textContent === result.correctAnswer) button.classList.add('correct');
+            });
+
+            if (result.correct) {
+                score += 1;
+                selectedButton.classList.add('correct');
+                feedbackElement.textContent = 'Correct!';
+            } else {
+                selectedButton.classList.add('incorrect');
+                feedbackElement.textContent = 'Not quite. The correct answer is ' + result.correctAnswer + '.';
+            }
+
+            scoreElement.textContent = score;
+            nextButton.textContent = currentQuestionIndex === questions.length - 1 ? 'See final score' : 'Next question';
+            nextButton.classList.remove('hidden');
+        }
+
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            finalScoreElement.textContent = 'You scored ' + score + ' out of ' + questions.length + '.';
+        }
+
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex += 1;
+            if (currentQuestionIndex === questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        });
+
+        restartButton.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            resultsScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            showQuestion();
+        });
+
+        loadQuiz();
+    </script>
+</body>
+</html>

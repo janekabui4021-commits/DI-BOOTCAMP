@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Guess</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Georgia, serif;
+            background: #f6f1e8;
+            color: #263238;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #f7c873 0, transparent 35%), #f6f1e8;
+        }
+
+        main {
+            width: min(100% - 32px, 900px);
+            margin: 0 auto;
+            padding: 48px 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 8vw, 5.8rem);
+            line-height: .85;
+            margin: 0;
+            letter-spacing: -3px;
+        }
+
+        .tagline {
+            max-width: 220px;
+            margin: 0;
+            font: 600 14px/1.4 Arial, sans-serif;
+            text-transform: uppercase;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 270px;
+            gap: 20px;
+        }
+
+        .game,
+        .leaderboard {
+            border: 2px solid #263238;
+            background: #fffdf8;
+            box-shadow: 8px 8px 0 #263238;
+        }
+
+        .game {
+            padding: clamp(24px, 5vw, 52px);
+            text-align: center;
+        }
+
+        .emoji {
+            font-size: clamp(6rem, 20vw, 11rem);
+            line-height: 1;
+            margin: 18px 0 28px;
+        }
+
+        label,
+        input,
+        button {
+            font: 600 15px Arial, sans-serif;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            border: 2px solid #263238;
+            padding: 12px;
+            background: #fff;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 22px 0;
+        }
+
+        .option {
+            border: 2px solid #263238;
+            background: #f7c873;
+            padding: 14px 10px;
+            cursor: pointer;
+        }
+
+        .option:hover,
+        .option:has(input:checked) {
+            background: #ee6c4d;
+            color: #fff;
+        }
+
+        .option input {
+            width: auto;
+            accent-color: #263238;
+        }
+
+        button {
+            width: 100%;
+            border: 2px solid #263238;
+            padding: 14px;
+            cursor: pointer;
+            background: #263238;
+            color: #fff;
+        }
+
+        button:hover { background: #ee6c4d; }
+
+        #feedback {
+            min-height: 24px;
+            font: 700 16px Arial, sans-serif;
+        }
+
+        .leaderboard {
+            padding: 22px;
+            align-self: start;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            font-size: 1.5rem;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 24px;
+            font: 15px/1.8 Arial, sans-serif;
+        }
+
+        .score {
+            float: right;
+            font-weight: 700;
+        }
+
+        @media (max-width: 680px) {
+            header { display: block; }
+            .tagline { margin-top: 18px; }
+            .layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Emoji<br>Guess</h1>
+            <p class="tagline">Read the symbol. Trust your instincts. Build your score.</p>
+        </header>
+        <div class="layout">
+            <section class="game">
+                <label for="name">Your name</label>
+                <input id="name" maxlength="20" placeholder="Enter a name for the leaderboard">
+                <div id="emoji" class="emoji" aria-label="Emoji to identify">...</div>
+                <form id="guess-form">
+                    <div id="options" class="options"></div>
+                    <button type="submit">Lock in answer</button>
+                </form>
+                <p id="feedback" aria-live="polite"></p>
+                <strong>Score: <span id="score">0</span></strong>
+            </section>
+            <aside class="leaderboard">
+                <h2>Leaderboard</h2>
+                <ol id="leaderboard"><li>No scores yet</li></ol>
+            </aside>
+        </div>
+    </main>
+    <script>
+        const playerId = localStorage.getItem('emoji-player-id') || crypto.randomUUID();
+        localStorage.setItem('emoji-player-id', playerId);
+        let currentQuestion;
+
+        const emojiElement = document.querySelector('#emoji');
+        const optionsElement = document.querySelector('#options');
+        const form = document.querySelector('#guess-form');
+        const feedback = document.querySelector('#feedback');
+        const scoreElement = document.querySelector('#score');
+        const nameInput = document.querySelector('#name');
+
+        async function loadQuestion(question) {
+            const game = question
+                ? { question }
+                : await fetch('/api/game').then((response) => response.json());
+
+            currentQuestion = game.question;
+            emojiElement.textContent = currentQuestion.emoji;
+            optionsElement.innerHTML = currentQuestion.options.map((option) =>
+                '<label class="option"><input required type="radio" name="guess" value="' + option + '"> ' + option + '</label>'
+            ).join('');
+        }
+
+        async function updateLeaderboard() {
+            const { leaderboard } = await fetch('/api/leaderboard').then((response) => response.json());
+
+            document.querySelector('#leaderboard').innerHTML = leaderboard.length
+                ? leaderboard.map((player) => '<li>' + player.name + '<span class="score">' + player.score + '</span></li>').join('')
+                : '<li>No scores yet</li>';
+        }
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const guess = new FormData(form).get('guess');
+            const result = await fetch('/api/guess', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ playerId, name: nameInput.value, questionId: currentQuestion.id, guess }),
+            }).then((response) => response.json());
+
+            feedback.textContent = result.correct
+                ? 'Correct! Great read.'
+                : 'Not quite. The answer was ' + result.answer + '.';
+            feedback.style.color = result.correct ? '#238636' : '#c2410c';
+            scoreElement.textContent = result.score;
+            await loadQuestion(result.question);
+            await updateLeaderboard();
+        });
+
+        loadQuestion();
+        updateLeaderboard();
+    </script>
+</body>
+</html>
