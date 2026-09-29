@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f1e8">
+    <title>Quickfire | Express Quiz</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./quiz-data.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="quiz-shell">
+      <header class="topbar">
+        <a class="wordmark" href="./" aria-label="Quickfire home">
+          <span class="mark" aria-hidden="true">Q</span>
+          <span>quickfire<span class="wordmark-dot">.</span></span>
+        </a>
+        <p class="course-label">EXPRESS / NODE.JS</p>
+      </header>
+
+      <section class="quiz-panel" aria-labelledby="page-title">
+        <div class="intro-row">
+          <div>
+            <p class="eyebrow">THE KNOWLEDGE CHECK</p>
+            <h1 id="page-title">Ready, set, <span>think.</span></h1>
+          </div>
+          <div class="score-chip" aria-live="polite">
+            <span class="score-label">SCORE</span>
+            <strong id="score">0</strong>
+          </div>
+        </div>
+
+        <div class="progress-row">
+          <span id="progress-text">Loading quiz</span>
+          <span id="progress-count"></span>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <form id="answer-form" class="question-area">
+          <fieldset id="question-fieldset" disabled>
+            <legend id="question-text">Loading your questions...</legend>
+            <div id="options" class="options-list"></div>
+          </fieldset>
+          <p id="feedback" class="feedback" aria-live="polite"></p>
+          <button id="submit-button" class="submit-button" type="submit" disabled>
+            Choose an answer
+          </button>
+        </form>
+
+        <footer class="panel-footer">
+          <span>ONE QUESTION AT A TIME</span>
+          <span class="footer-spark" aria-hidden="true">✳</span>
+          <span>NO GUESSING REQUIRED</span>
+        </footer>
+      </section>
+
+      <p class="page-note">A little practice goes a long way.</p>
+    </main>
+  </body>
+</html>

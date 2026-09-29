@@ -1,0 +1,13 @@
+{
+  "name": "emoji-greeting-exercise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An Express Router app for personalized emoji greetings",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
