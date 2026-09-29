@@ -1,0 +1,12 @@
+{
+  "name": "express-quiz-app",
+  "version": "1.0.0",
+  "description": "Multiple-choice quiz served by Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
