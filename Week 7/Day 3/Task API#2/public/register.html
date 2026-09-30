@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19372e">
+  <title>Create account | Fieldnotes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/auth.js" defer></script>
+</head>
+<body>
+  <main class="auth-layout register-layout">
+    <section class="brand-panel">
+      <a class="brand" href="/login.html"><span class="brand-mark" aria-hidden="true">F</span><span>FIELDNOTES</span></a>
+      <div class="brand-copy"><p class="eyebrow">A good place to begin</p><h1>Make room<br>for <em>what’s next.</em></h1><p>Create your account to get started.</p></div>
+      <span class="brand-index">NEW MEMBER / 02</span>
+    </section>
+    <section class="form-panel" aria-labelledby="form-title">
+      <form id="auth-form" class="auth-form" data-mode="register" novalidate>
+        <p class="eyebrow form-eyebrow">Get started</p>
+        <h2 id="form-title">Create account</h2>
+        <div class="name-fields">
+          <div><label for="name">Name</label><input id="name" name="name" type="text" maxlength="60" autocomplete="given-name" placeholder="First name" required></div>
+          <div><label for="lastName">Last name</label><input id="lastName" name="lastName" type="text" maxlength="60" autocomplete="family-name" placeholder="Last name" required></div>
+        </div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com" required>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" minlength="3" maxlength="24" autocomplete="username" placeholder="Choose a username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" placeholder="At least 8 characters" required>
+        <button id="submit-button" class="submit-button" type="submit" disabled>Create account <span aria-hidden="true">↗</span></button>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <p class="form-switch">Already registered? <a href="/login.html">Sign in</a></p>
+      </form>
+      <div class="form-caption"><span>02</span><span>FIELDNOTES / ACCOUNT</span></div>
+    </section>
+  </main>
+</body>
+</html>

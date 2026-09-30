@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f0">
+  <title>Common Room | Real-time chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="/client.js" defer></script>
+</head>
+<body>
+  <main id="entry-screen" class="entry-screen">
+    <section class="entry-story" aria-labelledby="brand-title">
+      <a class="brand brand-light" href="#" aria-label="Common Room home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span>common room</span>
+      </a>
+      <div class="story-copy">
+        <p class="eyebrow">A little more together</p>
+        <h1 id="brand-title">Good conversations<br>start <em>somewhere.</em></h1>
+        <p class="story-description">Drop into a room, find your people, and pick up the conversation as it happens.</p>
+      </div>
+      <div class="story-foot"><span class="live-dot"></span> A small space for good company</div>
+    </section>
+
+    <section class="entry-panel" aria-labelledby="entry-title">
+      <form id="entry-form" class="entry-form">
+        <p class="eyebrow">Come on in</p>
+        <h2 id="entry-title">Find your room.</h2>
+        <p class="form-intro">Choose a name people will recognize and pick a room to join.</p>
+
+        <label for="username-input">Your name</label>
+        <input id="username-input" name="username" type="text" maxlength="24" autocomplete="nickname" placeholder="e.g. Sam" required>
+
+        <label for="room-input">Room</label>
+        <input id="room-input" name="room" type="text" maxlength="32" value="lobby" placeholder="e.g. book-club" required>
+
+        <button class="primary-button enter-button" type="submit">Enter the room <span aria-hidden="true">↗</span></button>
+        <p class="privacy-note">No account needed. Just be kind.</p>
+        <p id="entry-error" class="inline-error" role="alert" hidden></p>
+      </form>
+      <div class="entry-decoration" aria-hidden="true"><span>CR</span><span>01 / OPEN</span></div>
+    </section>
+  </main>
+
+  <main id="chat-app" class="chat-app" hidden>
+    <aside class="room-sidebar" aria-label="Chat rooms">
+      <a class="brand brand-dark" href="#" aria-label="Common Room home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span>common room</span>
+      </a>
+
+      <div class="sidebar-section room-section">
+        <div class="section-heading"><span>Your rooms</span><span class="micro-label">03</span></div>
+        <nav id="room-list" class="room-list" aria-label="Available rooms">
+          <button class="room-link" type="button" data-room="lobby"><span class="hash">#</span> lobby</button>
+          <button class="room-link" type="button" data-room="study-hall"><span class="hash">#</span> study-hall</button>
+          <button class="room-link" type="button" data-room="break-room"><span class="hash">#</span> break-room</button>
+        </nav>
+      </div>
+
+      <form id="room-form" class="room-form">
+        <label for="new-room-input">Join another room</label>
+        <div class="room-input-row">
+          <input id="new-room-input" type="text" maxlength="32" placeholder="room-name" autocomplete="off">
+          <button type="submit" aria-label="Join room">+</button>
+        </div>
+      </form>
+
+      <div class="sidebar-bottom">
+        <div class="connection-indicator"><span class="live-dot"></span><span id="connection-label">Connecting</span></div>
+        <div class="signed-in-user">
+          <span id="my-avatar" class="avatar avatar-lime">?</span>
+          <span class="signed-in-copy"><strong id="my-name">Guest</strong><span>at the table</span></span>
+          <button id="leave-button" class="leave-button" type="button" title="Leave this room">Leave</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="conversation" aria-label="Room conversation">
+      <header class="conversation-header">
+        <div class="current-room-title"><span class="hash">#</span><h1 id="current-room">lobby</h1><span class="room-tag">OPEN ROOM</span></div>
+        <div class="header-presence"><span class="live-dot"></span><span id="header-user-count">0 here</span></div>
+        <button id="people-toggle" class="people-toggle" type="button" aria-expanded="false" aria-controls="user-list">People <span id="toggle-user-count">0</span></button>
+      </header>
+
+      <div id="message-list" class="message-list" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Messages">
+        <div class="room-welcome"><span class="welcome-mark">#</span><h2>Welcome to <span id="welcome-room">lobby</span></h2><p>This is the beginning of something good.</p></div>
+      </div>
+
+      <form id="message-form" class="message-composer">
+        <label class="sr-only" for="message-input">Write a message</label>
+        <textarea id="message-input" rows="1" maxlength="2000" placeholder="Write a message..." autocomplete="off"></textarea>
+        <div class="composer-footer"><span>Enter to send <span class="composer-divider">·</span> Shift + Enter for a new line</span><button class="send-button" type="submit">Send <span aria-hidden="true">↗</span></button></div>
+      </form>
+    </section>
+
+    <aside class="people-sidebar" aria-label="People in this room">
+      <div class="people-heading"><div><p class="eyebrow">Around the table</p><h2>People <span id="people-count">0</span></h2></div><span class="people-spark" aria-hidden="true">✳</span></div>
+      <ul id="user-list" class="user-list"></ul>
+      <div class="people-note"><span class="note-mark">✦</span><p>Better chats happen when everyone feels welcome.</p></div>
+      <div class="room-meta"><span>ROOM NOTES</span><p>Messages stay here while the server is running.</p></div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

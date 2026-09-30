@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19372e">
+  <title>Frontline | Base Capture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/client.js" defer></script>
+</head>
+<body>
+  <main id="auth-screen" class="auth-screen">
+    <section class="auth-intro">
+      <a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">F</span><span>FRONTLINE</span></a>
+      <div class="intro-copy">
+        <p class="eyebrow">A turn-based field game</p>
+        <h1>Every move<br>has a <em>meaning.</em></h1>
+        <p>Read the terrain. Guard your corner. Take the opposing base one careful step at a time.</p>
+      </div>
+      <div class="intro-footer"><span class="grid-glyph" aria-hidden="true">10 × 10</span><span>Two players · One objective</span></div>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="auth-title">
+      <form id="auth-form" class="auth-form">
+        <p class="eyebrow" id="auth-eyebrow">Welcome back</p>
+        <h2 id="auth-title">Enter the field.</h2>
+        <div class="auth-tabs" role="group" aria-label="Account action">
+          <button class="auth-tab active" type="button" data-mode="login" aria-pressed="true">Sign in</button>
+          <button class="auth-tab" type="button" data-mode="register" aria-pressed="false">Create account</button>
+        </div>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" minlength="3" maxlength="18" autocomplete="username" placeholder="commander_01" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" placeholder="At least 8 characters" required>
+        <button id="auth-submit" class="primary-button" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+        <p id="auth-error" class="form-error" role="alert" hidden></p>
+      </form>
+      <p class="auth-footnote">Accounts and matches stay in memory while this server runs.</p>
+    </section>
+  </main>
+
+  <div id="game-shell" class="game-shell" hidden>
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">F</span><span>FRONTLINE</span></a>
+      <div class="topbar-center"><span class="status-pin"></span><span>FIELD OPERATIONS</span></div>
+      <div class="topbar-account"><span id="account-name">Commander</span><button id="logout-button" type="button">Sign out</button></div>
+    </header>
+
+    <main class="workspace">
+      <section id="lobby-screen" class="lobby-screen">
+        <div class="lobby-heading">
+          <div><p class="eyebrow">Command center / 01</p><h1>Choose your next move.</h1><p class="lobby-subtitle">Create a field or join a commander waiting for an opponent.</p></div>
+          <button id="create-game" class="primary-button create-button" type="button">New field <span aria-hidden="true">＋</span></button>
+        </div>
+
+        <div class="lobby-layout">
+          <section class="open-fields" aria-labelledby="fields-title">
+            <div class="section-title"><h2 id="fields-title">Available fields</h2><span id="field-count" class="count-label">0 OPEN</span></div>
+            <div id="game-list" class="game-list"><p class="empty-state">Scanning for open fields...</p></div>
+          </section>
+
+          <aside class="rules-panel" aria-label="Game rules">
+            <p class="eyebrow">Field briefing</p>
+            <h2>Capture the base.</h2>
+            <ol class="rules-list">
+              <li><span>01</span><p>Move one square, north, south, east, or west.</p></li>
+              <li><span>02</span><p>Take turns. You cannot pass through rocks or the other commander.</p></li>
+              <li><span>03</span><p>Reach the opposing base or attack it from an adjacent square.</p></li>
+            </ol>
+            <div class="rules-foot"><span class="obstacle-swatch"></span> Rocks block movement</div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="match-screen" class="match-screen" hidden>
+        <div class="match-heading">
+          <button id="back-to-lobby" class="back-button" type="button"><span aria-hidden="true">←</span> Fields</button>
+          <div class="match-code-label"><span class="eyebrow">FIELD ID</span><strong id="game-id">--------</strong><button id="copy-game-id" class="copy-button" type="button">Copy</button></div>
+          <div id="match-status" class="match-status">WAITING</div>
+        </div>
+
+        <div class="match-layout">
+          <aside class="match-rail">
+            <div class="turn-card">
+              <p class="eyebrow">Current turn</p>
+              <strong id="turn-name">Waiting</strong>
+              <span id="turn-hint">Invite another player to begin.</span>
+            </div>
+            <div class="players-card">
+              <div class="section-title"><h2>Commanders</h2><span id="player-count" class="count-label">1 / 2</span></div>
+              <div id="players-list" class="players-list"></div>
+            </div>
+            <div class="history-card">
+              <div class="section-title"><h2>Field log</h2><span class="count-label">LIVE</span></div>
+              <ol id="move-log" class="move-log"></ol>
+            </div>
+          </aside>
+
+          <section class="board-panel" aria-label="Game board">
+            <div class="board-caption"><span>TACTICAL MAP</span><span>10 × 10 GRID</span></div>
+            <div id="game-board" class="game-board" role="grid" aria-label="Ten by ten game board"></div>
+            <div class="board-legend">
+              <span><i class="legend-player legend-a"></i> Side A</span>
+              <span><i class="legend-player legend-b"></i> Side B</span>
+              <span><i class="legend-base"></i> Base</span>
+              <span><i class="legend-rock"></i> Obstacle</span>
+            </div>
+          </section>
+
+          <aside class="command-rail">
+            <div class="command-heading"><p class="eyebrow">Your command</p><h2>Make a move.</h2></div>
+            <p id="command-hint" class="command-hint">Join a field to take command.</p>
+            <div class="direction-pad" aria-label="Move one square">
+              <span></span><button type="button" data-direction="up" aria-label="Move up">↑</button><span></span>
+              <button type="button" data-direction="left" aria-label="Move left">←</button><span class="pad-center">MOVE</span><button type="button" data-direction="right" aria-label="Move right">→</button>
+              <span></span><button type="button" data-direction="down" aria-label="Move down">↓</button><span></span>
+            </div>
+            <button id="attack-button" class="attack-button" type="button" disabled><span aria-hidden="true">✦</span> Attack base</button>
+            <p id="action-feedback" class="action-feedback" role="status"></p>
+            <div class="command-tip"><span class="tip-mark">!</span><p>Reach the enemy base to capture it, or attack from one square away.</p></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+</body>
+</html>

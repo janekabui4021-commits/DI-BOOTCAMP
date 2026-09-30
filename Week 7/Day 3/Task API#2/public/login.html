@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19372e">
+  <title>Sign in | Fieldnotes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/auth.js" defer></script>
+</head>
+<body>
+  <main class="auth-layout">
+    <section class="brand-panel">
+      <a class="brand" href="/login.html"><span class="brand-mark" aria-hidden="true">F</span><span>FIELDNOTES</span></a>
+      <div class="brand-copy"><p class="eyebrow">Your workspace, in one place</p><h1>Welcome<br>back.</h1><p>Sign in to continue to your account.</p></div>
+      <span class="brand-index">MEMBER ACCESS / 01</span>
+    </section>
+    <section class="form-panel" aria-labelledby="form-title">
+      <form id="auth-form" class="auth-form" data-mode="login" novalidate>
+        <p class="eyebrow form-eyebrow">Member sign in</p>
+        <h2 id="form-title">Sign in</h2>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" minlength="3" maxlength="24" autocomplete="username" placeholder="Your username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" maxlength="72" autocomplete="current-password" placeholder="Your password" required>
+        <button id="submit-button" class="submit-button" type="submit" disabled>Sign in <span aria-hidden="true">↗</span></button>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <p class="form-switch">New here? <a href="/register.html">Create an account</a></p>
+      </form>
+      <div class="form-caption"><span>01</span><span>FIELDNOTES / ACCOUNT</span></div>
+    </section>
+  </main>
+</body>
+</html>

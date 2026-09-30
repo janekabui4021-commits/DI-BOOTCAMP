@@ -1,0 +1,14 @@
+{
+  "name": "real-time-chat-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Room-based real-time chat built with Express and Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.1"
+  }
+}

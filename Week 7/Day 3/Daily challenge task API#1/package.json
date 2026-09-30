@@ -1,0 +1,13 @@
+{
+  "name": "task-management-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express task management API with JSON file storage",
+  "main": "Daily challenge task API#1.js",
+  "scripts": {
+    "start": "node \"Daily challenge task API#1.js\""
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
