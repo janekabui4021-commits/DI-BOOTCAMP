@@ -1,0 +1,56 @@
+.para {
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.exercise-content {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+
+.exercise-content h1,
+.exercise-content p {
+  margin: 0;
+}
+
+.example-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.example-form input,
+.example-form button {
+  min-height: 40px;
+  padding: 8px 12px;
+  font: inherit;
+}
+
+.example-form input {
+  border: 1px solid #a9aaa6;
+  border-radius: 3px;
+}
+
+.example-form button {
+  border: 0;
+  border-radius: 3px;
+  background: #225b48;
+  color: white;
+  cursor: pointer;
+}
+
+.example-image {
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.example-list {
+  margin: 0;
+  padding-left: 20px;
+}

@@ -1,0 +1,23 @@
+body {
+  min-width: 320px;
+  background-color: #f5f7f6;
+  color: #202820;
+}
+
+.celebrity-card {
+  width: min(100% - 16px, 30rem);
+  min-height: 100%;
+  border-color: #d9e1dc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.celebrity-image {
+  height: 250px;
+  object-fit: cover;
+  background: #e6ebe7;
+}
+
+.planet-list {
+  max-width: 540px;
+}

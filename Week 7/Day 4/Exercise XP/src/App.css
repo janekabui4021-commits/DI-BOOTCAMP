@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #202521;
+  background: #f4f2ec;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background-image: radial-gradient(#d6d6cb 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
+}
+
+.page-shell {
+  width: min(100% - 40px, 860px);
+  margin: 0 auto;
+  padding: 56px 0 80px;
+}
+
+.page-heading {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #225b48;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.lesson {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #d7d8cf;
+  border-left: 4px solid #225b48;
+  background: #fffefa;
+}
+
+.lesson h2 {
+  margin: 0 0 18px;
+  font-size: 21px;
+}
+
+.lesson h3 {
+  margin: 8px 0;
+}
+
+.lesson ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    width: min(100% - 24px, 860px);
+    padding-top: 36px;
+  }
+
+  .lesson {
+    padding: 18px;
+  }
+}
