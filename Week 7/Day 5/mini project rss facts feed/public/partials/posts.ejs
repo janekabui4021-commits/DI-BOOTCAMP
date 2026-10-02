@@ -1,0 +1,21 @@
+<section class="post-list" aria-label="Facts">
+  <% if (!posts || posts.length === 0) { %>
+    <p class="notice"><%= message || 'No facts to display yet.' %></p>
+  <% } else { %>
+    <% posts.forEach((post) => { %>
+      <article class="post-item">
+        <h2>
+          <a href="<%= post.link %>" target="_blank" rel="noopener noreferrer">
+            <%= post.title %>
+          </a>
+        </h2>
+        <div class="post-meta">
+          <span>Published: <%= post.pubDate %></span>
+          <span>By: <%= post.creator %></span>
+          <span>Category: <%= post.categories.length ? post.categories.join(', ') : 'Uncategorized' %></span>
+        </div>
+        <p class="post-content"><%= post.content %></p>
+      </article>
+    <% }) %>
+  <% } %>
+</section>

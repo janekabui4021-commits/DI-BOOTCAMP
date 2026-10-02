@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <%- include('../partials/head', { pageTitle: 'Search Facts | RSS Facts Feed' }) %>
+  <body>
+    <%- include('../partials/header') %>
+    <main class="page-shell">
+      <header class="page-heading">
+        <p class="eyebrow">Find a fact</p>
+        <h1>Search the feed</h1>
+        <p>Choose a title or category to filter the latest posts.</p>
+      </header>
+
+      <section class="search-panel" aria-labelledby="title-search-heading">
+        <h2 class="h5" id="title-search-heading">Search by title</h2>
+        <form class="search-form" action="/search/title" method="post">
+          <label class="form-label" for="title">Post title</label>
+          <select class="form-select" id="title" name="title" required>
+            <option value="">Choose a title</option>
+            <% titles.forEach((title) => { %>
+              <option value="<%= title %>" <%= selectedTitle === title ? 'selected' : '' %>><%= title %></option>
+            <% }) %>
+          </select>
+          <button class="btn btn-success justify-self-start" type="submit">Search title</button>
+        </form>
+      </section>
+
+      <section class="search-panel" aria-labelledby="category-search-heading">
+        <h2 class="h5" id="category-search-heading">Search by category</h2>
+        <form class="search-form" action="/search/category" method="post">
+          <label class="form-label" for="category">Category</label>
+          <select class="form-select" id="category" name="category" required>
+            <option value="">Choose a category</option>
+            <% categories.forEach((category) => { %>
+              <option value="<%= category %>" <%= selectedCategory === category ? 'selected' : '' %>><%= category %></option>
+            <% }) %>
+          </select>
+          <button class="btn btn-success" type="submit">Search category</button>
+        </form>
+      </section>
+
+      <%- include('../partials/posts', { posts, message }) %>
+    </main>
+    <%- include('../partials/footer') %>
+  </body>
+</html>
