@@ -1,0 +1,486 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install Week 7 Day 4 React dependencies",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Week 7 Day 4 React app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Rebuild Week 7 Day 4 React app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify React app build",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Confirm React app build",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Week 7 Day 4 Exercise XP app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final build Exercise XP",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Exercise XP Gold dependencies",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP Gold",
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Exercise XP Gold",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP Gold",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Exercise XP Gold app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP Gold",
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final build Exercise XP Gold",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Exercise XP Gold",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install landing page dependencies",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\miniproject",
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build miniproject landing page",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\miniproject",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start React landing page",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\miniproject",
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final build landing page miniproject",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\miniproject",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final verify miniproject",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\miniproject",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install carousel challenge dependencies",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build React Carousel",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start React Carousel app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Final React Carousel build",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"npm.cmd",
+				"--prefix",
+				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Git status before push",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--branch"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspect Day 4 changes",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--untracked-files=all",
+				"--",
+				"Week 7/Day 4"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Confirm GitHub remote",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"remote",
+				"-v"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check latest commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"log",
+				"-1",
+				"--oneline"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check Day 4 generated artifacts",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--untracked-files=all",
+				"--",
+				"Week 7/Day 4"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify Day 4 staging scope",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--untracked-files=all",
+				"--",
+				"Week 7/Day 4"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stage Week 7 Day 4",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"--",
+				"Week 7/Day 4"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Review staged Day 4 diff",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"diff",
+				"--cached",
+				"--stat"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check staged whitespace",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"diff",
+				"--cached",
+				"--check"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check staged status",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Commit Week 7 Day 4 work",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"commit",
+				"-m",
+				"Add Week 7 Day 4 React exercises"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Push Week 7 Day 4 to GitHub main",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify pushed branch status",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--branch"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify remote head commit",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"log",
+				"-1",
+				"--oneline",
+				"--decorate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
