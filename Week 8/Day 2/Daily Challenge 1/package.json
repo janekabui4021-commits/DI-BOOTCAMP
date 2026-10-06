@@ -1,0 +1,16 @@
+{
+  "name": "week-8-day-2-daily-challenge-1",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n client,server \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "node server/server.js",
+    "build": "npm --prefix client run build"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "express": "^4.21.2"
+  }
+}

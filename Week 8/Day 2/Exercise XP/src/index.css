@@ -1,0 +1,110 @@
+:root {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f2937;
+  background: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef6ff 0%, #f8fafc 100%);
+}
+
+button {
+  margin: 0.5rem 0;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d8e3f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 600;
+}
+
+.nav-link.active {
+  color: #fff !important;
+}
+
+.list-group-item {
+  background: #f8fafc;
+}
+
+.post {
+  padding: 0.75rem 0;
+}
+
+.post + .post {
+  border-top: 1px solid #dee2e6;
+}
+
+.post h3,
+.json-example h2,
+.skill-area h3,
+.experience h3 {
+  margin-bottom: 0.5rem;
+}
+
+.post p,
+.experience-role p {
+  margin-bottom: 0.5rem;
+}
+
+.json-example {
+  margin-top: 1.5rem;
+}
+
+.social-media-list,
+.skill-list {
+  padding-left: 1.25rem;
+}
+
+.social-media-list li,
+.skill-list li {
+  margin-bottom: 0.35rem;
+}
+
+.skill-area {
+  margin-bottom: 1rem;
+}
+
+.hot-skill {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: #dc3545;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.experience {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.experience + .experience {
+  border-top: 1px solid #dee2e6;
+}
+
+.company-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
