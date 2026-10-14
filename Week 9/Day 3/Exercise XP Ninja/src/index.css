@@ -1,0 +1,546 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #222b25;
+  background: #f2f4ee;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  --ink: #222b25;
+  --muted: #79827b;
+  --forest: #275744;
+  --line: #e1e6de;
+  --surface: #fffefa;
+  --lime: #cadc79;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(120deg, rgba(202, 220, 121, 0.13), transparent 32rem),
+    #f2f4ee;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(100%, 1180px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 42px;
+}
+
+.topbar {
+  display: flex;
+  height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dfe5db;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  border-radius: 3px;
+  color: #f8f9f2;
+  background: var(--forest);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  place-items: center;
+}
+
+.brand-period {
+  color: #a4b848;
+}
+
+.course-tag,
+.eyebrow,
+.inventory-summary,
+.page-footer {
+  font-family: 'DM Mono', monospace;
+}
+
+.course-tag {
+  color: #718075;
+  font-size: 0.64rem;
+  font-weight: 500;
+}
+
+.course-tag i {
+  padding: 0 5px;
+  color: #b1b9b0;
+  font-style: normal;
+}
+
+.workspace {
+  padding: 62px 0 72px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 38px;
+}
+
+.eyebrow {
+  margin: 0 0 11px;
+  color: #65804b;
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+.eyebrow span {
+  padding: 0 5px;
+  color: #abb7a8;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 7px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 5px;
+  color: #627266;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem;
+}
+
+.live-indicator > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #83a83e;
+  box-shadow: 0 0 0 3px rgba(131, 168, 62, 0.13);
+}
+
+.add-section,
+.inventory-section {
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.add-section {
+  margin-bottom: 24px;
+  padding: 21px 24px 24px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.section-index {
+  color: #92a184;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.66rem;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.5fr) minmax(125px, 1fr) 100px auto;
+  align-items: end;
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field label {
+  color: #667067;
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+
+.field input,
+.quantity-form input {
+  width: 100%;
+  min-width: 0;
+  height: 41px;
+  padding: 0 11px;
+  border: 1px solid #dfe4dc;
+  border-radius: 3px;
+  outline: none;
+  color: var(--ink);
+  background: #fffefa;
+  font-size: 0.82rem;
+}
+
+.field input::placeholder {
+  color: #a2aaa1;
+}
+
+.field input:focus,
+.quantity-form input:focus {
+  border-color: #75905b;
+  box-shadow: 0 0 0 3px rgba(117, 144, 91, 0.12);
+}
+
+.add-button {
+  display: flex;
+  height: 41px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 3px;
+  color: #fffefa;
+  background: var(--forest);
+  cursor: pointer;
+  font-size: 0.79rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 140ms;
+}
+
+.add-button:hover {
+  background: #1b4333;
+}
+
+.add-button span {
+  color: var(--lime);
+  font-size: 1.1rem;
+}
+
+.inventory-section {
+  min-height: 270px;
+  padding: 0 24px 20px;
+}
+
+.inventory-heading {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.inventory-summary {
+  display: flex;
+  gap: 9px;
+  color: #758076;
+  font-size: 0.62rem;
+}
+
+.summary-divider {
+  color: #b4bcb3;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.inventory-table th {
+  height: 44px;
+  color: #8a9489;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.59rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.inventory-table td {
+  height: 61px;
+  border-top: 1px solid #edf0e9;
+  color: #556057;
+  font-size: 0.8rem;
+}
+
+.inventory-table tbody tr:first-child td {
+  border-top: 0;
+}
+
+.inventory-table .product-name {
+  min-width: 170px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.sku {
+  padding: 4px 6px;
+  border-radius: 2px;
+  color: #6f7a70;
+  background: #f1f3ed;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.67rem;
+  white-space: nowrap;
+}
+
+.stock-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #477454;
+  font-size: 0.73rem;
+  white-space: nowrap;
+}
+
+.stock-status > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #79a65d;
+}
+
+.stock-status.is-low {
+  color: #9a6a2c;
+}
+
+.stock-status.is-low > span {
+  background: #d39a4d;
+}
+
+.stock-status.is-empty {
+  color: #a14d46;
+}
+
+.stock-status.is-empty > span {
+  background: #cf7167;
+}
+
+.quantity-column {
+  width: 140px;
+}
+
+.quantity-form {
+  display: flex;
+  width: 116px;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-form input {
+  width: 58px;
+  height: 32px;
+  padding: 0 7px;
+  font-size: 0.76rem;
+}
+
+.quantity-form button {
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #dfe5da;
+  border-radius: 3px;
+  color: #536052;
+  background: #fbfcf8;
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.quantity-form button:hover {
+  border-color: #9aad83;
+  background: #f2f5eb;
+}
+
+.remove-button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 3px;
+  color: #90998f;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.3rem;
+  place-items: center;
+}
+
+.remove-button:hover {
+  color: #a14d46;
+  background: #fbefed;
+}
+
+.table-note {
+  margin: 12px 0 0;
+  color: #929a90;
+  font-size: 0.68rem;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 195px;
+  justify-items: center;
+  align-content: center;
+  color: #798379;
+}
+
+.empty-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  border: 1px solid #e1e6dc;
+  border-radius: 50%;
+  color: #8d9a85;
+  font-family: 'DM Mono', monospace;
+  place-items: center;
+}
+
+.empty-state p {
+  margin-bottom: 5px;
+  color: #404a41;
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.empty-state > span:last-child {
+  font-size: 0.76rem;
+}
+
+.page-footer {
+  padding: 16px 0 23px;
+  border-top: 1px solid #dfe5db;
+  color: #899388;
+  font-size: 0.59rem;
+}
+
+.page-footer span {
+  padding: 0 6px;
+  color: #b0b9ac;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(119, 153, 73, 0.45);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 0 22px;
+  }
+
+  .workspace {
+    padding-top: 42px;
+  }
+
+  .add-form {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.75fr);
+  }
+
+  .quantity-field {
+    grid-column: 1;
+  }
+
+  .add-button {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .app-shell {
+    padding: 0 15px;
+  }
+
+  .topbar {
+    height: 64px;
+  }
+
+  .course-tag {
+    font-size: 0.54rem;
+  }
+
+  .page-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 17px;
+    margin-bottom: 26px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  .add-section {
+    padding: 18px 16px;
+  }
+
+  .inventory-section {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .inventory-table {
+    min-width: 680px;
+  }
+
+  .inventory-summary {
+    gap: 5px;
+    font-size: 0.55rem;
+  }
+}

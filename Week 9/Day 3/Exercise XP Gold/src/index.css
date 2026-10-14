@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #242b25;
+  background: #eff2e9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  --ink: #242b25;
+  --muted: #788178;
+  --forest: #234d3e;
+  --lime: #d6ed82;
+  --paper: #fffefa;
+  --line: #e6e9e1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 88% 9%, rgba(214, 237, 130, 0.24), transparent 28rem),
+    #eff2e9;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  padding: 40px 22px;
+  place-items: center;
+}
+
+.auth-layout {
+  display: grid;
+  width: min(100%, 980px);
+  min-height: 610px;
+  grid-template-columns: 0.92fr 1.08fr;
+  overflow: hidden;
+  border: 1px solid rgba(35, 77, 62, 0.12);
+  background: var(--paper);
+  box-shadow: 0 28px 80px rgba(37, 58, 44, 0.12);
+}
+
+.brand-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 38px 40px 32px;
+  color: #f8f8ed;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 44px, rgba(255, 255, 255, 0.035) 44px 45px),
+    var(--forest);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.brand-mark {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  color: var(--forest);
+  background: var(--lime);
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  place-items: center;
+}
+
+.brand-message {
+  max-width: 360px;
+  padding: 54px 0;
+}
+
+.brand-kicker,
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.67rem;
+  font-weight: 500;
+}
+
+.brand-kicker {
+  margin-bottom: 20px;
+  color: var(--lime);
+}
+
+.brand-kicker span {
+  padding: 0 5px;
+  color: rgba(248, 248, 237, 0.45);
+}
+
+.brand-message h1 {
+  margin: 0 0 16px;
+  font-family: 'Fraunces', serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.08;
+}
+
+.brand-message > p:last-child {
+  max-width: 270px;
+  margin: 0;
+  color: rgba(248, 248, 237, 0.72);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(248, 248, 237, 0.75);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--lime);
+}
+
+.note-divider {
+  padding: 0 4px;
+  color: var(--lime);
+}
+
+.form-panel {
+  display: grid;
+  padding: 56px clamp(32px, 7vw, 78px);
+  place-items: center;
+}
+
+.login-content,
+.welcome-panel {
+  width: min(100%, 360px);
+}
+
+.panel-heading {
+  margin-bottom: 32px;
+}
+
+.panel-heading .eyebrow,
+.welcome-copy .eyebrow {
+  margin-bottom: 12px;
+  color: #648044;
+}
+
+.panel-heading h2,
+.welcome-copy h2 {
+  margin: 0 0 9px;
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.panel-heading > p:last-child,
+.welcome-copy > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.91rem;
+  line-height: 1.55;
+}
+
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.login-form label {
+  margin: 0 0 7px;
+  color: #424b43;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.login-form input {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 19px;
+  padding: 11px 13px;
+  border: 1px solid #dfe4da;
+  border-radius: 3px;
+  outline: none;
+  color: var(--ink);
+  background: #fffefa;
+  font-size: 0.88rem;
+}
+
+.login-form input::placeholder {
+  color: #a1a99f;
+}
+
+.login-form input:focus {
+  border-color: #648044;
+  box-shadow: 0 0 0 3px rgba(100, 128, 68, 0.13);
+}
+
+.primary-button {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 3px;
+  color: #fffefa;
+  background: var(--forest);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 140ms;
+}
+
+.primary-button:hover {
+  background: #183c30;
+}
+
+.primary-button span {
+  color: var(--lime);
+  font-size: 1.25rem;
+}
+
+.form-footnote {
+  margin: 17px 0 0;
+  color: #858e84;
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.avatar {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  color: var(--forest);
+  background: #e6efce;
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  place-items: center;
+}
+
+.profile-label {
+  margin: 0 0 4px;
+  color: #7e887d;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+}
+
+.profile-email {
+  overflow-wrap: anywhere;
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.welcome-copy {
+  padding: 32px 0;
+}
+
+.logout-button {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  border: 1px solid #dfe4da;
+  border-radius: 3px;
+  color: #485248;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.logout-button:hover {
+  border-color: #bdc9b7;
+  background: #f6f8f1;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(164, 190, 94, 0.65);
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .page-shell {
+    padding: 16px;
+    place-items: start center;
+  }
+
+  .auth-layout {
+    max-width: 480px;
+    grid-template-columns: 1fr;
+  }
+
+  .brand-panel {
+    min-height: 245px;
+    padding: 24px;
+  }
+
+  .brand-message {
+    padding: 28px 0 20px;
+  }
+
+  .brand-message h1 {
+    max-width: 310px;
+    font-size: 2.1rem;
+  }
+
+  .brand-message > p:last-child {
+    font-size: 0.85rem;
+  }
+
+  .security-note {
+    font-size: 0.65rem;
+  }
+
+  .form-panel {
+    min-height: 430px;
+    padding: 38px 25px;
+  }
+}
