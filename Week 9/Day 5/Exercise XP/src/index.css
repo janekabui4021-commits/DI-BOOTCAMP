@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #34332f;
+  background: #f6f5f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  --ink: #34332f;
+  --muted: #8f8d85;
+  --green: #586a50;
+  --border: #e8e6df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 360px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #a8b69b;
+  outline-offset: 3px;
+}
+
+.page-shell {
+  width: min(100% - 64px, 1050px);
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.45px;
+  text-decoration: none;
+}
+
+.wordmark-icon {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid #dcded3;
+  border-radius: 50%;
+  color: var(--green);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.topbar-caption {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #8d8d83;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.topbar-caption > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8b9b76;
+}
+
+.content {
+  width: min(100%, 830px);
+  margin: 0 auto;
+}
+
+.intro {
+  padding: 62px 0 43px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: #8c967f;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  color: #34332f;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(36px, 6vw, 55px);
+  font-weight: 500;
+  letter-spacing: -1.8px;
+  line-height: 1.15;
+}
+
+h1 em {
+  color: #78876a;
+  font-weight: 500;
+}
+
+.intro-copy {
+  margin: 0 auto;
+  color: #87857d;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.collection {
+  padding: 23px 25px 27px;
+  border: 1px solid #e9e7e0;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.collection-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 19px;
+}
+
+.collection-topline h2 {
+  margin: 0 0 4px;
+  color: #393832;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.collection-topline p {
+  margin: 0;
+  color: #939188;
+  font-size: 10px;
+}
+
+.shelf-mark {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #99988d;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.shelf-mark > span {
+  color: #77876a;
+  font-size: 13px;
+}
+
+.genre-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 4px;
+  border: 1px solid #edebe5;
+  border-radius: 6px;
+  background: #f5f4f0;
+}
+
+.genre-tab {
+  display: inline-flex;
+  min-height: 34px;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #7d7c74;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background 140ms ease, color 140ms ease, box-shadow 140ms ease;
+}
+
+.genre-tab:hover {
+  color: #53644c;
+}
+
+.genre-tab.selected {
+  background: #fff;
+  color: #52654b;
+  box-shadow: 0 1px 4px rgba(52, 51, 47, 0.1);
+  font-weight: 600;
+}
+
+.genre-count {
+  color: #a1a096;
+  font-size: 9px;
+}
+
+.selected .genre-count {
+  color: #78876a;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 18px;
+  padding-top: 22px;
+}
+
+.book-card {
+  min-width: 0;
+}
+
+.book-cover {
+  position: relative;
+  display: flex;
+  aspect-ratio: 0.76;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 1px solid rgba(52, 51, 47, 0.1);
+  border-radius: 3px 7px 7px 3px;
+  box-shadow: inset 5px 0 0 rgba(25, 23, 19, 0.12), 0 3px 7px rgba(54, 48, 36, 0.09);
+  color: #fffdf4;
+  text-align: center;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.book-card:hover .book-cover {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: inset 5px 0 0 rgba(25, 23, 19, 0.12), 0 8px 15px rgba(54, 48, 36, 0.13);
+}
+
+.cover-plum {
+  background: linear-gradient(145deg, #665167, #493d4a);
+}
+
+.cover-moss {
+  background: linear-gradient(145deg, #707954, #4b513d);
+}
+
+.cover-rose {
+  background: linear-gradient(145deg, #8a5555, #634143);
+}
+
+.cover-ochre {
+  background: linear-gradient(145deg, #ab8754, #79603d);
+}
+
+.cover-blue {
+  background: linear-gradient(145deg, #607d86, #425e64);
+}
+
+.cover-green {
+  background: linear-gradient(145deg, #657c63, #465c4a);
+}
+
+.cover-sand {
+  background: linear-gradient(145deg, #b08a5b, #806143);
+}
+
+.cover-terracotta {
+  background: linear-gradient(145deg, #a66f5c, #765044);
+}
+
+.cover-slate {
+  background: linear-gradient(145deg, #60717c, #424f5a);
+}
+
+.cover-ornament {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  margin-bottom: 13px;
+  border: 1px solid rgba(255, 253, 244, 0.5);
+  border-radius: 50%;
+  color: rgba(255, 253, 244, 0.92);
+  font-size: 17px;
+}
+
+.cover-genre {
+  color: rgba(255, 253, 244, 0.7);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.book-cover h3 {
+  max-width: 180px;
+  margin: 9px 0 10px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.27;
+}
+
+.cover-rule {
+  width: 25px;
+  height: 1px;
+  margin-bottom: 8px;
+  background: rgba(255, 253, 244, 0.58);
+}
+
+.cover-author {
+  color: rgba(255, 253, 244, 0.8);
+  font-size: 8px;
+}
+
+.cover-index {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  color: rgba(255, 253, 244, 0.55);
+  font-size: 8px;
+}
+
+.book-info {
+  position: relative;
+  padding: 12px 2px 0;
+}
+
+.book-genre {
+  color: #849176;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.book-title {
+  overflow: hidden;
+  margin: 5px 0 3px;
+  color: #45443e;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-author {
+  overflow: hidden;
+  margin: 0;
+  color: #929087;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-year {
+  position: absolute;
+  top: 12px;
+  right: 2px;
+  color: #aaa89f;
+  font-size: 8px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  display: grid;
+  min-height: 180px;
+  place-content: center;
+  color: #85857a;
+  text-align: center;
+}
+
+.empty-state > span {
+  color: #849176;
+  font-size: 20px;
+}
+
+.empty-state p {
+  margin: 8px 0 0;
+  font-size: 12px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 19px 2px 30px;
+  color: #9b9990;
+  font-size: 9px;
+}
+
+.footer span:last-child {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 36px, 520px);
+  }
+
+  .topbar {
+    height: 63px;
+  }
+
+  .intro {
+    padding: 47px 0 31px;
+  }
+
+  .collection {
+    padding: 17px 14px 19px;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 13px;
+    padding-top: 16px;
+  }
+
+  .book-cover {
+    padding: 13px;
+  }
+
+  .book-cover h3 {
+    font-size: clamp(14px, 4vw, 19px);
+  }
+}
+
+@media (max-width: 400px) {
+  .page-shell {
+    width: min(100% - 24px, 360px);
+  }
+
+  .topbar-caption {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .wordmark {
+    font-size: 15px;
+  }
+
+  .collection-topline {
+    gap: 8px;
+  }
+
+  .shelf-mark {
+    font-size: 7px;
+  }
+}

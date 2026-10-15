@@ -1,0 +1,28 @@
+import { createSelector } from '@reduxjs/toolkit';
+
+export const selectBooks = (state) => state.books.items;
+
+export const selectHorrorBooks = createSelector(
+  [selectBooks],
+  (books) => books.filter((book) => book.genre === 'Horror'),
+);
+
+export const selectFantasyBooks = createSelector(
+  [selectBooks],
+  (books) => books.filter((book) => book.genre === 'Fantasy'),
+);
+
+export const selectScienceFictionBooks = createSelector(
+  [selectBooks],
+  (books) => books.filter((book) => book.genre === 'Science Fiction'),
+);
+
+export const selectBookCountsByGenre = createSelector(
+  [selectHorrorBooks, selectFantasyBooks, selectScienceFictionBooks],
+  (horror, fantasy, scienceFiction) => ({
+    All: horror.length + fantasy.length + scienceFiction.length,
+    Horror: horror.length,
+    Fantasy: fantasy.length,
+    'Science Fiction': scienceFiction.length,
+  }),
+);
