@@ -2,28 +2,28 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Install Week 7 Day 4 React dependencies",
+			"label": "Install Week 07 Day 4 React dependencies",
 			"type": "shell",
 			"command": "cmd.exe",
 			"args": [
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"install"
 			],
 			"isBackground": false,
 			"problemMatcher": []
 		},
 		{
-			"label": "Build Week 7 Day 4 React app",
+			"label": "Build Week 07 Day 4 React app",
 			"type": "shell",
 			"command": "cmd.exe",
 			"args": [
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"build"
 			],
@@ -31,14 +31,14 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Rebuild Week 7 Day 4 React app",
+			"label": "Rebuild Week 07 Day 4 React app",
 			"type": "shell",
 			"command": "cmd.exe",
 			"args": [
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"build"
 			],
@@ -53,7 +53,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"build"
 			],
@@ -68,7 +68,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"build"
 			],
@@ -76,14 +76,14 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Start Week 7 Day 4 Exercise XP app",
+			"label": "Start Week 07 Day 4 Exercise XP app",
 			"type": "shell",
 			"command": "cmd.exe",
 			"args": [
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"dev",
 				"--",
@@ -101,7 +101,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP",
+				"Week 07\\Day 4\\Exercise XP",
 				"run",
 				"build"
 			],
@@ -116,7 +116,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP Gold",
+				"Week 07\\Day 4\\Exercise XP Gold",
 				"install"
 			],
 			"isBackground": false,
@@ -130,7 +130,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP Gold",
+				"Week 07\\Day 4\\Exercise XP Gold",
 				"run",
 				"build"
 			],
@@ -145,7 +145,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP Gold",
+				"Week 07\\Day 4\\Exercise XP Gold",
 				"run",
 				"dev",
 				"--",
@@ -163,7 +163,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Exercise XP Gold",
+				"Week 07\\Day 4\\Exercise XP Gold",
 				"run",
 				"build"
 			],
@@ -178,7 +178,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\miniproject",
+				"Week 07\\Day 4\\miniproject landing page using react",
 				"install"
 			],
 			"isBackground": false,
@@ -192,7 +192,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\miniproject",
+				"Week 07\\Day 4\\miniproject landing page using react",
 				"run",
 				"build"
 			],
@@ -207,7 +207,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\miniproject",
+				"Week 07\\Day 4\\miniproject landing page using react",
 				"run",
 				"dev",
 				"--",
@@ -225,7 +225,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\miniproject",
+				"Week 07\\Day 4\\miniproject landing page using react",
 				"run",
 				"build"
 			],
@@ -240,7 +240,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\miniproject",
+				"Week 07\\Day 4\\miniproject landing page using react",
 				"run",
 				"build"
 			],
@@ -255,7 +255,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"Week 07\\Day 4\\Daily Challenge React Carousel",
 				"install"
 			],
 			"isBackground": false,
@@ -269,7 +269,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"Week 07\\Day 4\\Daily Challenge React Carousel",
 				"run",
 				"build"
 			],
@@ -284,7 +284,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"Week 07\\Day 4\\Daily Challenge React Carousel",
 				"run",
 				"dev",
 				"--",
@@ -302,7 +302,7 @@
 				"/c",
 				"npm.cmd",
 				"--prefix",
-				"Week 7\\Day 4\\Daily Challenge React Carousel",
+				"Week 07\\Day 4\\Daily Challenge React Carousel",
 				"run",
 				"build"
 			],
@@ -330,7 +330,7 @@
 				"--short",
 				"--untracked-files=all",
 				"--",
-				"Week 7/Day 4"
+				"Week 07/Day 4"
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -367,7 +367,7 @@
 				"--short",
 				"--untracked-files=all",
 				"--",
-				"Week 7/Day 4"
+				"Week 07/Day 4"
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -381,19 +381,19 @@
 				"--short",
 				"--untracked-files=all",
 				"--",
-				"Week 7/Day 4"
+				"Week 07/Day 4"
 			],
 			"isBackground": false,
 			"problemMatcher": []
 		},
 		{
-			"label": "Stage Week 7 Day 4",
+			"label": "Stage Week 07 Day 4",
 			"type": "shell",
 			"command": "git",
 			"args": [
 				"add",
 				"--",
-				"Week 7/Day 4"
+				"Week 07/Day 4"
 			],
 			"isBackground": false,
 			"problemMatcher": []
@@ -434,19 +434,19 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Commit Week 7 Day 4 work",
+			"label": "Commit Week 07 Day 4 work",
 			"type": "shell",
 			"command": "git",
 			"args": [
 				"commit",
 				"-m",
-				"Add Week 7 Day 4 React exercises"
+				"Add Week 07 Day 4 React exercises"
 			],
 			"isBackground": false,
 			"problemMatcher": []
 		},
 		{
-			"label": "Push Week 7 Day 4 to GitHub main",
+			"label": "Push Week 07 Day 4 to GitHub main",
 			"type": "shell",
 			"command": "git",
 			"args": [
@@ -483,14 +483,14 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Build Week 9 Day 6 Todo app",
+			"label": "Build Week 09 Day 6 Todo app",
 			"type": "shell",
 			"command": "cmd.exe",
 			"args": [
 				"/c",
 				"cd",
 				"/d",
-				"C:\\Users\\EHK STUDENT 007\\Desktop\\DI BOOTCAMP\\Week 9\\Day 6\\To-do list manager",
+				"C:\\Users\\EHK STUDENT 007\\Desktop\\DI BOOTCAMP\\Week 09\\Day 6\\To-do list manager",
 				"&&",
 				"npm.cmd",
 				"install",
