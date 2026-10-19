@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f6f0" />
+    <meta
+      name="description"
+      content="A TypeScript recipe book for collecting and organizing favorite recipes."
+    />
+    <title>Week 10 Day 2 | Recipe Book</title>
+  </head>
+  <body>
+    <div class="recipe-app">
+      <header class="page-header">
+        <p class="eyebrow">WEEK 10 <span>/</span> DAY 2 <span>/</span> MINI PROJECT XP</p>
+        <h1>A table full of <span>good things.</span></h1>
+        <p class="intro">Keep your favorite recipes close, one delicious idea at a time.</p>
+      </header>
+
+      <main>
+        <section class="entry-panel" aria-labelledby="entry-heading">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">ADD TO YOUR COLLECTION</p>
+              <h2 id="entry-heading">A new recipe</h2>
+            </div>
+            <span class="section-icon" aria-hidden="true">✳</span>
+          </div>
+
+          <form id="recipeEntryForm">
+            <label class="field">
+              <span>Recipe title</span>
+              <input
+                type="text"
+                id="recipeTitle"
+                name="recipeTitle"
+                placeholder="e.g. Sunday tomato pasta"
+                maxlength="100"
+                required
+              />
+            </label>
+            <label class="field">
+              <span>Ingredients <small>one per line</small></span>
+              <textarea
+                id="ingredients"
+                name="ingredients"
+                placeholder="Ripe tomatoes&#10;Fresh basil&#10;A little olive oil"
+                rows="4"
+                required
+              ></textarea>
+            </label>
+            <label class="field">
+              <span>Instructions</span>
+              <textarea
+                id="instructions"
+                name="instructions"
+                placeholder="Write down how to bring it all together…"
+                rows="4"
+                required
+              ></textarea>
+            </label>
+            <div class="form-footer">
+              <p id="formMessage" class="form-message" aria-live="polite"></p>
+              <button class="button button-primary" type="submit">
+                <span aria-hidden="true">+</span> Save recipe
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="collection-section" aria-labelledby="collection-heading">
+          <div class="collection-heading">
+            <div>
+              <p class="section-kicker">YOUR PERSONAL COOKBOOK</p>
+              <h2 id="collection-heading">Recipe collection</h2>
+            </div>
+            <button id="clearRecipesButton" class="button button-quiet" type="button">
+              Clear all
+            </button>
+          </div>
+          <p id="storageMessage" class="storage-message" role="status" hidden></p>
+          <div id="recipeContainer" class="recipe-grid" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="page-footer">Made for the recipes worth remembering.</footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

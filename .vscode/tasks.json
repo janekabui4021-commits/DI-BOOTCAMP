@@ -481,6 +481,27 @@
 			],
 			"isBackground": false,
 			"problemMatcher": []
+		},
+		{
+			"label": "Build Week 9 Day 6 Todo app",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd",
+				"/d",
+				"C:\\Users\\EHK STUDENT 007\\Desktop\\DI BOOTCAMP\\Week 9\\Day 6\\To-do list manager",
+				"&&",
+				"npm.cmd",
+				"install",
+				"&&",
+				"npm.cmd",
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }
