@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f5f1" />
+    <meta
+      name="description"
+      content="A step-by-step guide to building JWT authentication with Node.js and Express."
+    />
+    <title>JWT Authentication | Week 10, Day 3</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #1d2925;
+        background: #f4f5f1;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        --muted: #68756f;
+        --line: #dfe5de;
+        --green: #176b52;
+        --green-soft: #e3f1e9;
+        --paper: #fff;
+        --code: #17221f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      a {
+        color: var(--green);
+      }
+
+      .page {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 52px 0 72px;
+      }
+
+      .eyebrow,
+      .section-label {
+        margin: 0;
+        color: var(--green);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 220px;
+        gap: 32px;
+        align-items: end;
+        padding: 30px 0 42px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 18px;
+        font-size: clamp(2.7rem, 7vw, 5.5rem);
+        letter-spacing: -0.075em;
+        line-height: 0.98;
+      }
+
+      h1 span {
+        color: var(--green);
+      }
+
+      .intro {
+        max-width: 660px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .hero-note {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #ebeee8;
+      }
+
+      .hero-note strong {
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      .hero-note p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 230px minmax(0, 1fr);
+        gap: 32px;
+        align-items: start;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 20px;
+      }
+
+      .progress-card,
+      .toc,
+      .card,
+      .callout {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--paper);
+      }
+
+      .progress-card {
+        margin-bottom: 14px;
+        padding: 18px;
+      }
+
+      .progress-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 0.85rem;
+      }
+
+      .progress-line span:last-child {
+        color: var(--muted);
+      }
+
+      progress {
+        width: 100%;
+        height: 8px;
+        overflow: hidden;
+        border: 0;
+        border-radius: 999px;
+        background: #e8ece7;
+        accent-color: var(--green);
+      }
+
+      progress::-webkit-progress-bar {
+        border-radius: 999px;
+        background: #e8ece7;
+      }
+
+      progress::-webkit-progress-value {
+        border-radius: 999px;
+        background: var(--green);
+      }
+
+      .toc {
+        padding: 18px;
+      }
+
+      .toc p {
+        margin-bottom: 12px;
+      }
+
+      .toc ol {
+        display: grid;
+        gap: 9px;
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .toc a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .toc a:hover,
+      .toc a:focus-visible {
+        color: var(--green);
+        text-decoration: underline;
+      }
+
+      .content {
+        min-width: 0;
+      }
+
+      .card {
+        margin-bottom: 18px;
+        padding: clamp(22px, 4vw, 34px);
+        scroll-margin-top: 22px;
+      }
+
+      .card-header {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .number {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--green-soft);
+        color: var(--green);
+        font-size: 0.85rem;
+        font-weight: 800;
+      }
+
+      .card h2 {
+        margin: 2px 0 5px;
+        font-size: clamp(1.3rem, 3vw, 1.7rem);
+        letter-spacing: -0.04em;
+      }
+
+      .card h3 {
+        margin: 24px 0 8px;
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+      }
+
+      .card-header p:last-child,
+      .card > p,
+      .card li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .card-header p:last-child {
+        margin-bottom: 0;
+      }
+
+      .card ul,
+      .card ol {
+        display: grid;
+        gap: 7px;
+        padding-left: 22px;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 10px;
+        padding: 0 !important;
+        list-style: none;
+      }
+
+      .checklist li {
+        display: flex;
+        gap: 11px;
+        align-items: flex-start;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: #fbfcfa;
+      }
+
+      .checklist input {
+        width: 17px;
+        height: 17px;
+        flex: 0 0 auto;
+        margin: 3px 0 0;
+        accent-color: var(--green);
+      }
+
+      .checklist label {
+        color: #46534d;
+        line-height: 1.55;
+        cursor: pointer;
+      }
+
+      pre {
+        overflow-x: auto;
+        margin: 16px 0 0;
+        padding: 18px;
+        border-radius: 12px;
+        background: var(--code);
+        color: #edf5ef;
+        font: 0.86rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace;
+        tab-size: 2;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      }
+
+      :not(pre) > code {
+        padding: 0.12em 0.38em;
+        border-radius: 5px;
+        background: #edf1eb;
+        color: #315342;
+        font-size: 0.9em;
+      }
+
+      .callout {
+        margin: 18px 0 0;
+        padding: 16px 18px;
+        border-color: #c7e2d2;
+        background: #eff8f2;
+        color: #395d49;
+        line-height: 1.65;
+      }
+
+      .callout strong {
+        color: #24563b;
+      }
+
+      .warning {
+        border-color: #ead9b2;
+        background: #fff8e9;
+        color: #6c5832;
+      }
+
+      .warning strong {
+        color: #664c1e;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin: 18px 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .flow li {
+        padding: 13px;
+        border-radius: 10px;
+        background: #f0f4ef;
+        font-size: 0.86rem;
+      }
+
+      .flow strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #283b31;
+      }
+
+      .footer {
+        padding: 18px 0;
+        color: var(--muted);
+        font-size: 0.85rem;
+        text-align: center;
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: min(100% - 28px, 620px);
+          padding-top: 28px;
+        }
+
+        .hero,
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          gap: 22px;
+          padding-top: 22px;
+        }
+
+        .hero-note {
+          max-width: 420px;
+        }
+
+        .sidebar {
+          position: static;
+        }
+
+        .toc {
+          display: none;
+        }
+
+        .flow {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Week 10 <span aria-hidden="true">/</span> Day 3 <span aria-hidden="true">/</span> Exercise XP</p>
+      <header class="hero">
+        <div>
+          <h1>JWT auth, <span>step by step.</span></h1>
+          <p class="intro">
+            Build a small Express authentication API. Learn what a JSON Web Token contains,
+            issue and verify tokens, protect routes, and handle browser cookies and refresh safely.
+          </p>
+        </div>
+        <aside class="hero-note">
+          <strong>Learning goal</strong>
+          <p>Know what each token is for, where it travels, and how to reject a request that cannot be trusted.</p>
+        </aside>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar" aria-label="Guide navigation and progress">
+          <div class="progress-card">
+            <div class="progress-line">
+              <strong>Guide progress</strong>
+              <span id="progress-text">0 of 7 complete</span>
+            </div>
+            <progress id="progress-bar" value="0" max="7" aria-label="Guide checklist items completed">0%</progress>
+          </div>
+          <nav class="toc" aria-label="Table of contents">
+            <p class="section-label">In this guide</p>
+            <ol>
+              <li><a href="#jwt-basics">JWT basics</a></li>
+              <li><a href="#setup">Set up Express</a></li>
+              <li><a href="#dependencies">Dependencies</a></li>
+              <li><a href="#users">Users and passwords</a></li>
+              <li><a href="#tokens">Issue tokens</a></li>
+              <li><a href="#middleware">Verify tokens</a></li>
+              <li><a href="#routes">Protect routes</a></li>
+              <li><a href="#cookies">Cookies and logout</a></li>
+              <li><a href="#refresh">Refresh tokens</a></li>
+              <li><a href="#xp">Exercise XP</a></li>
+            </ol>
+          </nav>
+        </aside>
+
+        <div class="content">
+          <section class="card" id="jwt-basics">
+            <div class="card-header">
+              <span class="number">01</span>
+              <div>
+                <h2>Understand JSON Web Tokens</h2>
+                <p>A JWT is a compact, signed way to carry claims between a client and a server.</p>
+              </div>
+            </div>
+            <p>
+              A signed JWT commonly has three Base64URL-encoded parts separated by dots:
+              <code>header.payload.signature</code>. The header names the signing algorithm,
+              the payload contains claims such as a user ID and expiry, and the signature lets
+              the server detect tampering. Signing does <strong>not</strong> encrypt the payload:
+              never put passwords, secrets, or sensitive personal data in it.
+            </p>
+            <ul class="checklist">
+              <li><input id="check-1" type="checkbox" /><label for="check-1">I can identify the header, payload, and signature.</label></li>
+              <li><input id="check-2" type="checkbox" /><label for="check-2">I know that a signed token can be read by its holder; it is not encrypted.</label></li>
+            </ul>
+            <div class="callout">
+              <strong>Authentication vs. authorization:</strong> authentication establishes who
+              the user is; authorization checks whether that user may perform a particular action.
+              A valid token alone does not grant every permission.
+            </div>
+          </section>
+
+          <section class="card" id="setup">
+            <div class="card-header">
+              <span class="number">02</span>
+              <div>
+                <h2>Set up a Node.js and Express app</h2>
+                <p>Create a small API project and start with one health-check route.</p>
+              </div>
+            </div>
+            <pre><code>mkdir jwt-auth-api
+cd jwt-auth-api
+npm init -y
+npm pkg set type=module
+npm install express jsonwebtoken bcrypt cookie-parser
+npm install --save-dev nodemon
+mkdir src
+# Create src/server.js</code></pre>
+            <p>
+              Add a development script with <code>npm pkg set "scripts.dev=nodemon src/server.js"</code>.
+              In <code>src/server.js</code>, create the Express app, enable JSON request bodies
+              with <code>express.json()</code>, and listen on a local port.
+            </p>
+            <div class="callout">
+              <strong>Note:</strong> Modern Express includes JSON body parsing. You do not need
+              the separate <code>body-parser</code> package for <code>express.json()</code>.
+            </div>
+          </section>
+
+          <section class="card" id="dependencies">
+            <div class="card-header">
+              <span class="number">03</span>
+              <div>
+                <h2>Know the dependencies</h2>
+                <p>Each package has a specific job in this example.</p>
+              </div>
+            </div>
+            <ul>
+              <li><code>express</code> creates the HTTP server and routes.</li>
+              <li><code>jsonwebtoken</code> signs and verifies JWTs.</li>
+              <li><code>bcrypt</code> hashes passwords and compares login attempts.</li>
+              <li><code>cookie-parser</code> reads cookies from incoming requests.</li>
+              <li><code>express.json()</code> parses JSON bodies; no extra body-parser package is needed.</li>
+            </ul>
+          </section>
+
+          <section class="card" id="users">
+            <div class="card-header">
+              <span class="number">04</span>
+              <div>
+                <h2>Model users and hash passwords</h2>
+                <p>Registration should validate input and store only a password hash.</p>
+              </div>
+            </div>
+            <p>
+              For the first exercise, use an array of user objects with a unique ID, normalized
+              email, and <code>passwordHash</code>. Check for duplicate email addresses. Use
+              <code>bcrypt.hash(password, 12)</code> before saving; on login, use
+              <code>bcrypt.compare(password, user.passwordHash)</code>. Never save or log the
+              submitted password. Replace the array with a database for real applications.
+            </p>
+            <ul class="checklist">
+              <li><input id="check-3" type="checkbox" /><label for="check-3">Registration rejects missing or invalid fields and duplicate accounts.</label></li>
+              <li><input id="check-4" type="checkbox" /><label for="check-4">The stored user record contains a password hash, not the original password.</label></li>
+            </ul>
+          </section>
+
+          <section class="card" id="tokens">
+            <div class="card-header">
+              <span class="number">05</span>
+              <div>
+                <h2>Issue short-lived access tokens</h2>
+                <p>Registration and login can return an access token after credentials are verified.</p>
+              </div>
+            </div>
+            <p>
+              Keep the signing secret in an environment variable, not in source control.
+              Create a strong random secret (at least 32 random bytes) for local development.
+              Sign only the minimum claims needed, such as the user ID in <code>sub</code>,
+              and set an expiry:
+            </p>
+            <pre><code>const accessToken = jwt.sign(
+  {},
+  process.env.JWT_ACCESS_SECRET,
+  { subject: user.id, expiresIn: '15m', algorithm: 'HS256' }
+);</code></pre>
+            <p>
+              Use different secrets for access and refresh tokens. In production, validate that
+              required secrets are configured at startup and fail explicitly if they are missing.
+              Do not use a placeholder or a default secret.
+            </p>
+          </section>
+
+          <section class="card" id="middleware">
+            <div class="card-header">
+              <span class="number">06</span>
+              <div>
+                <h2>Verify tokens in authentication middleware</h2>
+                <p>Read the access token, verify its signature and expiry, and attach its subject to the request.</p>
+              </div>
+            </div>
+            <pre><code>function authenticate(req, res, next) {
+  const header = req.headers.authorization;
+  const [scheme, token] = header?.split(' ') ?? [];
+
+  if (scheme !== 'Bearer' || !token) {
+    return res.status(401).json({ error: 'Authentication required' });
+  }
+
+  let claims;
+  try {
+    claims = jwt.verify(token, process.env.JWT_ACCESS_SECRET, {
+      algorithms: ['HS256'],
+    });
+  } catch {
+    return res.status(401).json({ error: 'Invalid or expired token' });
+  }
+
+  if (typeof claims === 'string' || typeof claims.sub !== 'string') {
+    return res.status(401).json({ error: 'Invalid token claims' });
+  }
+
+  req.userId = claims.sub;
+  next();
+}</code></pre>
+            <p>
+              Verification must use the expected secret and an explicit allowed algorithm.
+              Treat the decoded claims as untrusted input until verification succeeds.
+              Return <code>401</code> when authentication is absent or invalid; do not leak
+              signature, secret, or token details in the response.
+            </p>
+          </section>
+
+          <section class="card" id="routes">
+            <div class="card-header">
+              <span class="number">07</span>
+              <div>
+                <h2>Protect routes and check permissions</h2>
+                <p>Attach authentication middleware only to routes that require a signed-in user.</p>
+              </div>
+            </div>
+            <pre><code>app.get('/api/profile', authenticate, async (req, res) =&gt; {
+  const user = await findUserById(req.userId);
+  if (!user) return res.status(404).json({ error: 'User not found' });
+
+  res.json({ id: user.id, email: user.email });
+});</code></pre>
+            <p>
+              Do not return password hashes. For a user modifying their own profile, derive the
+              account ID from verified claims instead of trusting a user ID supplied in the body.
+              For roles or other permissions, add explicit server-side authorization checks and
+              return <code>403</code> when an authenticated user is not allowed to act.
+            </p>
+          </section>
+
+          <section class="card" id="cookies">
+            <div class="card-header">
+              <span class="number">08</span>
+              <div>
+                <h2>Store tokens in HTTP-only cookies</h2>
+                <p>Cookies can keep tokens out of JavaScript, but cookie-based auth needs CSRF protection.</p>
+              </div>
+            </div>
+            <p>
+              When setting a token cookie, use <code>httpOnly: true</code>,
+              <code>secure: true</code> in production over HTTPS, an appropriate
+              <code>sameSite</code> setting, a narrow <code>path</code>, and a short
+              <code>maxAge</code>. Use <code>cookie-parser</code> to read it. If your app sends
+              cookies cross-site, configure CORS credentials carefully and add CSRF defenses;
+              <code>SameSite</code> is not a complete substitute in every setup.
+            </p>
+            <p>
+              A logout route should clear the cookie using the same path and relevant options
+              used when setting it. Clearing a cookie in the browser does not, by itself,
+              invalidate a copied JWT; short access-token lifetimes and server-side refresh-token
+              revocation help address that gap.
+            </p>
+            <div class="callout warning">
+              <strong>Choose storage deliberately:</strong> do not put long-lived tokens in
+              <code>localStorage</code>. HTTP-only cookies reduce exposure to token theft through
+              injected JavaScript, but require CSRF-aware cookie and request handling.
+            </div>
+          </section>
+
+          <section class="card" id="refresh">
+            <div class="card-header">
+              <span class="number">09</span>
+              <div>
+                <h2>Add refresh tokens with rotation</h2>
+                <p>Refresh tokens extend a session without making access tokens long-lived.</p>
+              </div>
+            </div>
+            <ol class="flow">
+              <li><strong>Login</strong>Issue a short-lived access token and a longer-lived refresh token.</li>
+              <li><strong>Store</strong>Put the refresh token in a secure, HTTP-only cookie.</li>
+              <li><strong>Refresh</strong>Verify it, check server-side session state, then issue a new pair.</li>
+              <li><strong>Rotate</strong>Revoke the old refresh token when the new one is issued.</li>
+            </ol>
+            <p>
+              Store a hash or identifier for each refresh token in a database, along with its
+              user, expiry, and revocation status. On <code>/refresh</code>, verify the token,
+              confirm it is still active, revoke it, and issue a replacement. If a revoked token
+              is reused, revoke that session's token family and require a new login. The
+              <code>/logout</code> route should revoke the active refresh token and clear its cookie.
+            </p>
+            <div class="callout">
+              <strong>Never trust a refresh cookie alone:</strong> verify its signature, expiry,
+              intended token type, and active server-side session before issuing another access token.
+            </div>
+          </section>
+
+          <section class="card" id="xp">
+            <div class="card-header">
+              <span class="number">XP</span>
+              <div>
+                <h2>Build it, then extend it</h2>
+                <p>Turn the guide into a working authentication API with clear success and error responses.</p>
+              </div>
+            </div>
+            <h3>Core requirements</h3>
+            <ul>
+              <li>Create <code>POST /register</code> and <code>POST /login</code> with validation and bcrypt password hashing.</li>
+              <li>Issue signed, expiring access tokens and protect <code>GET /profile</code> with authentication middleware.</li>
+              <li>Use an HTTP-only cookie for the refresh token; implement <code>POST /refresh</code> and <code>POST /logout</code>.</li>
+              <li>Use environment variables for secrets, and return appropriate <code>400</code>, <code>401</code>, <code>403</code>, and <code>409</code> responses.</li>
+            </ul>
+            <h3>XP extensions</h3>
+            <ul>
+              <li>Enforce username and password rules, and let an authenticated user update their own profile.</li>
+              <li>Replace in-memory users with persistent database storage.</li>
+              <li>Add email confirmation with one-time, expiring tokens.</li>
+              <li>Rate-limit login and refresh endpoints to slow brute-force attempts.</li>
+              <li>Test expired, malformed, revoked, and replayed refresh tokens, plus unauthenticated and unauthorized requests.</li>
+            </ul>
+            <div class="callout">
+              <strong>Before calling it done:</strong> confirm a wrong password never logs in,
+              an expired or altered access token gets <code>401</code>, a forbidden action gets
+              <code>403</code>, logout revokes the refresh session, and secrets never appear in
+              responses or version control.
+            </div>
+            <ul class="checklist">
+              <li><input id="check-5" type="checkbox" /><label for="check-5">I can explain access tokens, refresh tokens, expiry, and rotation.</label></li>
+              <li><input id="check-6" type="checkbox" /><label for="check-6">I can protect a route and distinguish authentication from authorization.</label></li>
+              <li><input id="check-7" type="checkbox" /><label for="check-7">I have a plan to revoke refresh tokens and test failure cases.</label></li>
+            </ul>
+          </section>
+
+          <footer class="footer">
+            JWTs are one part of an authentication system. Keep dependencies updated, use HTTPS,
+            validate inputs, and follow the current security guidance for your framework and deployment.
+          </footer>
+        </div>
+      </div>
+    </main>
+    <script>
+      const checks = [...document.querySelectorAll('.checklist input[type="checkbox"]')];
+      const progress = document.querySelector('#progress-bar');
+      const progressText = document.querySelector('#progress-text');
+
+      function updateProgress() {
+        const completed = checks.filter((check) => check.checked).length;
+        progress.max = checks.length;
+        progress.value = completed;
+        progressText.textContent = `${completed} of ${checks.length} complete`;
+      }
+
+      checks.forEach((check) => check.addEventListener('change', updateProgress));
+    </script>
+  </body>
+</html>
