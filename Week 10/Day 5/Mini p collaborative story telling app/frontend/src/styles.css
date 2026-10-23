@@ -132,7 +132,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px
 .sidebar-writing-note strong { font: 700 10px/1.45 Manrope, sans-serif; }
 .sidebar-writing-note small { color: var(--muted); font-size: 9px; line-height: 1.45; }
 .workspace-user { display: flex; align-items: center; gap: 9px; margin-top: 13px; padding: 12px 2px 2px; border-top: 1px solid var(--line); }
-.user-avatar, .top-user-avatar, .story-author-avatar { display: inline-grid; flex: 0 0 auto; width: 30px; height: 30px; place-items: center; border: 1px solid #e8ded0; border-radius: 50%; color: #785650; background: #f0e2d9; font-size: 8px; font-weight: 700; }
+.user-avatar, .top-user-avatar, .story-author-avatar { display: inline-grid; flex: 0 0 auto; width: 30px; height: 30px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--olive-deep); background: var(--olive-pale); font-size: 8px; font-weight: 700; }
 .workspace-user > span:nth-child(2) { display: grid; min-width: 0; gap: 3px; }
 .workspace-user strong { overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
 .workspace-user small { overflow: hidden; color: var(--muted); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
