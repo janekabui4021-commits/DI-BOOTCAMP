@@ -15,8 +15,8 @@ shared TypeScript models.
 From this project directory:
 
 ```powershell
- install
-Copy-Item bnpmackend\.env.example backend\.env
+npm install
+Copy-Item backend\.env.example backend\.env
 ```
 
 Edit `backend\.env` with your PostgreSQL connection and two separate random
