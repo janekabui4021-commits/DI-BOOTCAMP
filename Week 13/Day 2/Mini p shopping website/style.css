@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8f7f4;
+  color: #242323;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #e8e5df;
+}
+
+.navbar {
+  position: relative;
+  max-width: 1200px;
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 18px 24px;
+}
+
+.brand {
+  display: inline-block;
+  color: #222;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+
+.brand i {
+  margin-right: 7px;
+  color: #dc684b;
+}
+
+.nav-links {
+  position: absolute;
+  top: 26px;
+  right: 24px;
+}
+
+.nav-links a {
+  padding: 10px 14px;
+  border-radius: 5px;
+  color: #302f2d;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  background: #f8e9e3;
+  color: #b94e34;
+}
+
+.nav-links i {
+  margin-left: 5px;
+}
+
+.welcome {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 24px 96px;
+  background: #f1e8df;
+}
+
+.eyebrow {
+  color: #ad563f;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.welcome h1 {
+  max-width: 650px;
+  margin: 18px 0;
+  font-size: clamp(42px, 7vw, 72px);
+  letter-spacing: -3px;
+  line-height: 1.05;
+}
+
+.welcome > p:not(.eyebrow) {
+  max-width: 540px;
+  color: #605b55;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.shop-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 20px;
+  border-radius: 5px;
+  background: #bc573d;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.shop-button:hover,
+.shop-button:focus-visible {
+  transform: translateY(-2px);
+  background: #963f2a;
+}
+
+.shop-button i {
+  margin-left: 8px;
+}
+
+.highlights {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 52px 24px 76px;
+  text-align: center;
+}
+
+.highlights article {
+  display: inline-block;
+  width: 31%;
+  margin: 0 1%;
+  padding: 12px;
+  vertical-align: top;
+}
+
+.highlights article > i {
+  color: #bc573d;
+  font-size: 25px;
+  transition: transform 160ms ease, color 160ms ease;
+}
+
+.highlights article:hover > i {
+  transform: scale(1.2);
+  color: #723622;
+}
+
+.highlights h2 {
+  font-size: 18px;
+}
+
+.highlights p {
+  color: #68635d;
+  line-height: 1.6;
+}
+
+.site-footer {
+  padding: 18px 24px;
+  background: #282724;
+  color: #eeeae4;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .welcome {
+    padding: 72px 22px;
+  }
+
+  .welcome h1 {
+    letter-spacing: -2px;
+  }
+
+  .highlights article {
+    display: block;
+    width: 100%;
+    margin: 0 0 22px;
+  }
+}

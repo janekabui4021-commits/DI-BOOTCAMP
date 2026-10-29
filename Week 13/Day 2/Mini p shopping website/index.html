@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Shop thoughtfully chosen everyday essentials at Everyday."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Everyday | Thoughtful Finds</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="index.html" aria-label="Everyday home">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+          <span>everyday</span>
+        </a>
+        <div class="nav-links">
+          <a href="products.html">Products <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <p class="eyebrow">Good things, made for every day</p>
+        <h1>Find your new favorite.</h1>
+        <p>
+          A thoughtful collection of accessories and essentials to bring a
+          little more joy to your everyday routine.
+        </p>
+        <a class="shop-button" href="products.html">
+          Explore the collection <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </section>
+
+      <section class="highlights" aria-label="Shopping highlights">
+        <article>
+          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          <h2>Picked with care</h2>
+          <p>Everyday pieces chosen for quality, comfort, and lasting style.</p>
+        </article>
+        <article>
+          <i class="fa-solid fa-box" aria-hidden="true"></i>
+          <h2>Ready to gift</h2>
+          <p>Find a thoughtful surprise for someone special—or yourself.</p>
+        </article>
+        <article>
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+          <h2>Made for you</h2>
+          <p>Easy-to-love essentials for all the little moments in life.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="current-year">2026</span> Everyday. Designed by Student Developer.</p>
+    </footer>
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
