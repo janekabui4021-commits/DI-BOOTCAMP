@@ -1,0 +1,68 @@
+const featuredBooks = [
+  {
+    id: 'featured-dune',
+    title: 'Dune',
+    authors: ['Frank Herbert'],
+    year: 1965,
+    image: 'https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg',
+    infoLink: 'https://books.google.com/books?q=Dune+Frank+Herbert',
+  },
+  {
+    id: 'featured-hobbit',
+    title: 'The Hobbit',
+    authors: ['J. R. R. Tolkien'],
+    year: 1937,
+    image: 'https://covers.openlibrary.org/b/isbn/9780547928227-L.jpg',
+    infoLink: 'https://books.google.com/books?q=The+Hobbit+Tolkien',
+  },
+  {
+    id: 'featured-gatsby',
+    title: 'The Great Gatsby',
+    authors: ['F. Scott Fitzgerald'],
+    year: 1925,
+    image: 'https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg',
+    infoLink: 'https://books.google.com/books?q=The+Great+Gatsby',
+  },
+  {
+    id: 'featured-pride-and-prejudice',
+    title: 'Pride and Prejudice',
+    authors: ['Jane Austen'],
+    year: 1813,
+    image: 'https://covers.openlibrary.org/b/isbn/9780141439518-L.jpg',
+    infoLink: 'https://books.google.com/books?q=Pride+and+Prejudice+Jane+Austen',
+  },
+  {
+    id: 'featured-1984',
+    title: '1984',
+    authors: ['George Orwell'],
+    year: 1949,
+    image: 'https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg',
+    infoLink: 'https://books.google.com/books?q=1984+George+Orwell',
+  },
+  {
+    id: 'featured-little-prince',
+    title: 'The Little Prince',
+    authors: ['Antoine de Saint-Exupéry'],
+    year: 1943,
+    image: 'https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg',
+    infoLink: 'https://books.google.com/books?q=The+Little+Prince',
+  },
+  {
+    id: 'featured-atomic-habits',
+    title: 'Atomic Habits',
+    authors: ['James Clear'],
+    year: 2018,
+    image: 'https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg',
+    infoLink: 'https://books.google.com/books?q=Atomic+Habits+James+Clear',
+  },
+  {
+    id: 'featured-harry-potter',
+    title: "Harry Potter and the Sorcerer's Stone",
+    authors: ['J. K. Rowling'],
+    year: 1997,
+    image: 'https://covers.openlibrary.org/b/isbn/9780590353427-L.jpg',
+    infoLink: "https://books.google.com/books?q=Harry+Potter+and+the+Sorcerer's+Stone",
+  },
+]
+
+export default featuredBooks
