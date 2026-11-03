@@ -43,6 +43,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # Publish the app at the repository's Pages root.
           path: 'week 14/day 7/Search book app/dist'
 
   deploy:
