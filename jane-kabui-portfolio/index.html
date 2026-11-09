@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Kabui</title>
+    <meta name="description" content="Jane Kabui is a full stack developer building responsive websites and practical digital experiences.">
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #715b5c;
+            --card-bg: rgba(56, 50, 50, 0.05);
+            --card-border: rgba(39, 34, 34, 0.12);
+            --accent-primary: #38bdf8;
+            --accent-secondary: #0284c7;
+            --text-main: #bae6fd;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.82)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=85');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.18);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* Glassmorphism Background Blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            top: -50px;
+            left: -50px;
+            width: 350px;
+            height: 350px;
+            background: rgba(56, 189, 248, 0.35);
+        }
+
+        .blob-2 {
+            bottom: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            background: rgba(244, 114, 182, 0.3);
+        }
+
+        /* Glassmorphism Utility */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            margin-bottom: 40px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr);
+            gap: 40px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center 25%;
+            margin: 0 auto;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .gradient-text {
+            color: #fff;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 0 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .floating-contact {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 200;
+            min-height: 58px;
+            padding: 0 24px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-radius: 999px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .floating-contact:hover,
+        .floating-contact:focus-visible {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.45);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .skill-card li {
+            margin: 8px 0;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .project-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: var(--text-main);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .project-link:hover,
+        .project-link:focus-visible {
+            color: var(--accent-primary);
+        }
+
+        .tribute-details {
+            margin-top: 24px;
+            padding: 28px;
+        }
+
+        .tribute-details h3 {
+            color: var(--accent-primary);
+            margin-bottom: 12px;
+        }
+
+        .tribute-details p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .tribute-facts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            list-style: none;
+        }
+
+        .tribute-facts li {
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border-left: 3px solid var(--accent-primary);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .tribute-facts strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        /* Contact Section */
+        .contact-card {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 48px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(255, 255, 255, 0.06));
+        }
+
+        .contact-intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-kicker {
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .contact-intro h3 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .contact-intro p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .contact-note {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .contact-form {
+            padding-left: 48px;
+            border-left: 1px solid var(--card-border);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 0.8rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 15px;
+            background: rgba(15, 23, 42, 0.35);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: #fff;
+            outline: none;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 125px;
+        }
+
+        .contact-submit {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .form-status {
+            min-height: 24px;
+            margin-top: 14px;
+            color: #86efac;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 170px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 14px;
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.3);
+            text-align: left;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus-visible {
+            color: #fff;
+            border-color: var(--accent-primary);
+            background: rgba(56, 189, 248, 0.18);
+            transform: translateY(-3px);
+        }
+
+        .social-icon {
+            display: grid;
+            flex: 0 0 34px;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .social-icon.tiktok {
+            background: #111;
+        }
+
+        .social-icon.instagram {
+            background: linear-gradient(135deg, #f9ce34, #ee2a7b 55%, #6228d7);
+        }
+
+        .social-icon.facebook {
+            background: #1877f2;
+            font-size: 1.15rem;
+        }
+
+        .social-icon.whatsapp {
+            background: #25d366;
+            font-size: 0.7rem;
+        }
+
+        .social-copy {
+            display: grid;
+            gap: 1px;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .social-handle {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .profile-photo {
+                max-width: 260px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .nav-links {
+                display: none;
+            }
+            .contact-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 22px;
+            }
+            .contact-form {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid var(--card-border);
+                padding-top: 30px;
+            }
+            .tribute-facts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tribute-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <a class="skip-link" href="#main-content">Skip to content</a>
+        <nav>
+            <div class="nav-content glass-card">
+                <a href="#" class="logo">Jane Kabui</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="hero glass-card" id="home">
+            <div class="profile-column">
+                <img src="jane.jpeg" alt="Jane Kabui smiling outdoors" class="profile-photo">
+                <a class="profile-link linkedin-link" href="https://www.linkedin.com/in/jane-kabui-51b552427/" target="_blank" rel="noopener noreferrer" aria-label="Open Jane Kabui's LinkedIn account"><span aria-hidden="true">in</span><span class="profile-account">LinkedIn <strong>/ Jane Kabui</strong></span><strong aria-hidden="true">&rarr;</strong></a>
+                <a class="profile-link github-link" href="https://github.com/janekabui4021" target="_blank" rel="noopener noreferrer" aria-label="Open Jane Kabui's GitHub profile"><span aria-hidden="true">&lt;/&gt;</span><span class="profile-account">GitHub <strong>/ Jane Kabui</strong></span><strong aria-hidden="true">&rarr;</strong></a>
+            </div>
+            <div>
+                <p class="hero-kicker">Thoughtful digital experiences, built with care</p>
+                <h1>Hi, I'm Jane, a <span class="gradient-text">Software Developer</span></h1>
+                <p>I build responsive, accessible websites—from polished frontend interfaces to practical backend foundations—using modern web technologies.</p>
+                <div class="hero-actions">
+                    <a class="cta-btn" href="#contact">Let's Work Together &rarr;</a>
+                    <a class="secondary-btn" href="#projects">View Projects</a>
+                    <a class="secondary-btn" href="Jane_Kabui_Resume.docx" download aria-label="Download Jane Kabui's resume">Download Resume</a>
+                    <a class="secondary-btn" href="index.html" download="Jane-Kabui-Portfolio.html" aria-label="Download Jane Kabui's portfolio">Download Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <main id="main-content">
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card glass-card">
+                <p>I am a software developer who enjoys turning ideas into useful, easy-to-use digital experiences. I am especially interested in web development, thoughtful interface design, and learning how frontend and backend technologies work together.</p>
+                <p>As I grow my skills through software development training and hands-on projects, my goal is to become a well-rounded developer and contribute to practical, accessible software that makes everyday tasks easier.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card glass-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML and CSS</li>
+                        <li>JavaScript</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-card glass-card">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>JSON Data Storage</li>
+                        <li>RESTful APIs</li>
+                    </ul>
+                </div>
+                <div class="skill-card glass-card">
+                    <h3>Databases</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>MySQL</li>
+                        <li>SQLite</li>
+                    </ul>
+                </div>
+                <div class="skill-card glass-card">
+                    <h3>Tools and Workflow</h3>
+                    <ul>
+                        <li>Git and GitHub</li>
+                        <li>Command Line Terminal</li>
+                        <li>Google Colab and CodePen</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">How I Can Help</h2>
+            <div class="services-grid">
+                <article class="service-card glass-card">
+                    <span class="service-number">01</span>
+                    <h3>Web Development</h3>
+                    <p>Responsive, accessible websites that look polished and work smoothly across phones, tablets, and desktops.</p>
+                </article>
+                <article class="service-card glass-card">
+                    <span class="service-number">02</span>
+                    <h3>Frontend Interfaces</h3>
+                    <p>Clear user interfaces with thoughtful layouts, useful interactions, and a strong focus on the people using them.</p>
+                </article>
+                <article class="service-card glass-card">
+                    <span class="service-number">03</span>
+                    <h3>Backend Foundations</h3>
+                    <p>Practical data handling and API-ready foundations that keep projects organized, maintainable, and ready to grow.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="design-showcase">
+            <h2 class="section-title">Web Design Showcase</h2>
+            <div class="design-gallery">
+                <article class="design-tile glass-card">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85" alt="Laptop showing a colorful website interface" class="design-image">
+                    <div class="design-caption">
+                        <span>01 / Landing pages</span>
+                        <h3>Bold visual experiences</h3>
+                    </div>
+                </article>
+                <article class="design-tile glass-card">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=900&q=85" alt="Mobile phone displaying a modern app interface" class="design-image">
+                    <div class="design-caption">
+                        <span>02 / Mobile-first design</span>
+                        <h3>Interfaces made to move</h3>
+                    </div>
+                </article>
+                <article class="design-tile glass-card">
+                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=900&q=85" alt="Designer working on a website layout" class="design-image">
+                    <div class="design-caption">
+                        <span>03 / Brand systems</span>
+                        <h3>Details with purpose</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card glass-card">
+                    <img src="https://cdn.britannica.com/07/10507-050-CA3FE190/Jomo-Kenyatta.jpg" alt="Mzee Jomo Kenyatta" class="project-img">
+                    <div class="project-info">
+                        <h3>Tribute to Mzee Jomo Kenyatta</h3>
+                        <p>A historical tribute web page detailing the legacy and key life events of Kenya's founding father, structured with semantic HTML and styled with modern CSS layout techniques.</p>
+                        <div class="tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                        <a class="project-link" href="https://codepen.io/editor/Jane-Kabui/pen/019ff52a-9fc0-7e49-9003-151c02fb081b" target="_blank" rel="noopener noreferrer">View Live Tribute &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Jane's Bakery" class="project-img">
+                    <div class="project-info">
+                        <h3>Jane's Bakery Website</h3>
+                        <p>A complete web showcase architecture for a bakery featuring product menus, visual galleries, and customer ordering section interfaces built for optimal mobile-first responsiveness.</p>
+                        <div class="tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">CSS Layouts</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <a class="project-link" href="https://codepen.io/editor/Jane-Kabui/pen/019fdae7-5b96-77c6-8b0c-d5cfa4b27ba5" target="_blank" rel="noopener noreferrer">View Live Bakery &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card glass-card">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=85" alt="Stack of books in a library" class="project-img">
+                    <div class="project-info">
+                        <h3>Search Book App</h3>
+                        <p>A React book discovery app that searches the Google Books catalog and presents book details, descriptions, and cover images. Search results are sorted by publication year, with loading, empty, and error states.</p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Google Books API</span>
+                            <span class="tag">Vite</span>
+                        </div>
+                        <a class="project-link" href="https://janekabui4021-commits.github.io/DI-BOOTCAMP/" target="_blank" rel="noopener noreferrer">Open Live App &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <article class="credential-card glass-card">
+                <span class="credential-kicker">August to November 2026</span>
+                <h3>Certificate in Software Development</h3>
+                <p>Empower Hope Kenya</p>
+            </article>
+        </section>
+
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <article class="credential-card glass-card">
+                <span class="credential-kicker">Professional training</span>
+                <h3>Software Development</h3>
+                <p>Developers Institute</p>
+            </article>
+        </section>
+
+        <section id="resume">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-card glass-card">
+                <div>
+                    <h3>View my experience and skills</h3>
+                    <p>Download my resume for a concise overview of my software development background.</p>
+                </div>
+                <a class="cta-btn" href="Jane_Kabui_Resume.docx" download aria-label="Download Jane Kabui's resume">Download Resume</a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-card glass-card">
+                <div class="contact-intro">
+                    <span class="contact-kicker">Let's connect</span>
+                    <h3>Have a project in mind?</h3>
+                    <p>Whether you have a question, an idea, or an opportunity, I would love to hear from you. Send a message and let's start a conversation.</p>
+                    <span class="contact-note">I usually reply within a short period of time.</span>
+                    <div class="professional-links">
+                        <a href="mailto:janekabui4021@gmail.com">janekabui4021@gmail.com</a>
+                        <a href="https://www.linkedin.com/in/jane-kabui-51b552427/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
+                        <a href="https://github.com/janekabui4021" target="_blank" rel="noopener noreferrer">GitHub profile</a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" placeholder="Your Message..." required></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn contact-submit">Send Message &rarr;</button>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+        </main>
+
+        <footer>
+            <div class="availability"><span class="availability-dot"></span> Available for new projects</div>
+            <div class="social-links" aria-label="Social media links">
+                <a href="https://www.tiktok.com/@janyjay.254" target="_blank" rel="noopener noreferrer">
+                    <span class="social-icon tiktok" aria-hidden="true">TT</span>
+                    <span class="social-copy"><span class="social-name">TikTok</span><span class="social-handle">@janyjay.254</span></span>
+                </a>
+                <a href="https://www.instagram.com/janyjay8/" target="_blank" rel="noopener noreferrer">
+                    <span class="social-icon instagram" aria-hidden="true">IG</span>
+                    <span class="social-copy"><span class="social-name">Instagram</span><span class="social-handle">@janyjay8</span></span>
+                </a>
+                <a href="https://www.facebook.com/janekabui" target="_blank" rel="noopener noreferrer">
+                    <span class="social-icon facebook" aria-hidden="true">f</span>
+                    <span class="social-copy"><span class="social-name">Facebook</span><span class="social-handle">Jane Kabui</span></span>
+                </a>
+                <a href="https://wa.me/254758563144" target="_blank" rel="noopener noreferrer">
+                    <span class="social-icon whatsapp" aria-hidden="true">WA</span>
+                    <span class="social-copy"><span class="social-name">WhatsApp</span><span class="social-handle">+254 758 563 144</span></span>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Jane Njeri's Portfolio. Built with custom CSS Glassmorphic design.</p>
+        </footer>
+    </div>
+
+    <a class="floating-contact" href="#contact" aria-label="Hire Jane" title="Hire Jane">Hire Me &rarr;</a>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
